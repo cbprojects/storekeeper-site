@@ -1,0 +1,152 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "storekeeper-site": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/storekeeper-site",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "./node_modules/bootstrap/scss/bootstrap.scss",
+              "./src/assets/scss/primeng/primeicons.scss",
+              "./src/assets/scss/primeng/primeng.scss",
+              "./src/assets/scss/primeng/primeflex.scss",
+              "./src/assets/scss/magnific-popup.scss",
+              "./src/assets/scss/nice-select.scss",
+              "./src/assets/scss/animate.scss",
+              "./src/assets/scss/material-dashboard.scss",
+              "./src/assets/scss/primeng/themes/nova.scss",
+              "./src/assets/scss/wpp.scss",
+              "./src/styles.scss"
+            ],
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "./src/assets/js/jquery.nice-select.min.js",
+              "./src/assets/js/jquery.magnific-popup.js",
+              "./src/assets/js/popper.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./src/assets/js/bootstrap-material-design.min.js",
+              "./src/assets/js/material-dashboard.js",
+              "./node_modules/chart.js/dist/chart.js",
+              "./src/assets/js/wpp.js",
+              "./src/assets/js/main.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "10mb",
+                  "maximumError": "10mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "10mb",
+                  "maximumError": "10mb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "storekeeper-site:build:production"
+            },
+            "development": {
+              "browserTarget": "storekeeper-site:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "storekeeper-site:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "./node_modules/bootstrap/scss/bootstrap.scss",
+              "./src/assets/scss/primeng/primeicons.scss",
+              "./src/assets/scss/primeng/primeng.scss",
+              "./src/assets/scss/primeng/primeflex.scss",
+              "./src/assets/scss/magnific-popup.scss",
+              "./src/assets/scss/nice-select.scss",
+              "./src/assets/scss/animate.scss",
+              "./src/assets/scss/material-dashboard.scss",
+              "./src/assets/scss/primeng/themes/nova.scss",
+              "./src/assets/scss/wpp.scss",
+              "./src/styles.scss"
+            ],
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.js",
+              "./src/assets/js/jquery.nice-select.min.js",
+              "./src/assets/js/jquery.magnific-popup.js",
+              "./src/assets/js/popper.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "./src/assets/js/bootstrap-material-design.min.js",
+              "./src/assets/js/material-dashboard.js",
+              "./node_modules/chart.js/dist/chart.js",
+              "./src/assets/js/wpp.js",
+              "./src/assets/js/main.js"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
