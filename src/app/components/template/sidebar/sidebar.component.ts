@@ -11,7 +11,6 @@ import { RestService } from 'src/app/services/rest.service';
 import { SesionService } from 'src/app/services/sesionService/sesion.service';
 
 declare var $: any;
-declare var reload: any;
 
 @Component({
   selector: 'app-sidebar',
@@ -57,7 +56,6 @@ export class SidebarComponent implements OnInit {
   }
 
   reload() {
-    reload();
     console.clear();
   }
 
