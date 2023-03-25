@@ -29,7 +29,7 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-
       - name: 3. CD to root
-        run: cd ~/work/contacts-manager-site/contacts-manager-site/
+        run: cd ~/work/storekeeper-site/storekeeper-site/
       - name: 4. Install Dependencies
         run: npm install
       - name: 5. SonarCloud Build and analyze
@@ -47,11 +47,11 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /var/www/contact-manager.cbaeneprojects.com
+            cd /var/www/storekeeper.cbaeneprojects.com
             rm -r html
             ls
       - name: 8. MV Folder HTML
-        run: mv dist/contacts-manager-site dist/html
+        run: mv dist/storekeeper-site dist/html
       - name: 9. CD new DIST and Compress ZIP of new DIST
         run: |
           cd dist
@@ -62,7 +62,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@v0.7.3
         with:
           local: dist/html.zip
-          remote: /var/www/contact-manager.cbaeneprojects.com/html.zip
+          remote: /var/www/storekeeper.cbaeneprojects.com/html.zip
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
@@ -75,7 +75,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /var/www/contact-manager.cbaeneprojects.com
+            cd /var/www/storekeeper.cbaeneprojects.com
             unzip html.zip
             rm -r html.zip
             ls
