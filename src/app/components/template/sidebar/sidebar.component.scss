@@ -1,3 +1,22 @@
-.sidebar-background{
-    opacity: 0.1;
+.sidebar-background {
+    opacity: 0.2;
+}
+
+.sidebar-logo {
+    height: auto;
+    width: 100%;
+}
+
+.sidebar-nav {
+    list-style: none;
+}
+
+.sidebar-nav .item {
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.sidebar-nav .item.active {
+    color: var(--app-color-text);
 }

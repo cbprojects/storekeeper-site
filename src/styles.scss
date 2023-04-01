@@ -1,3 +1,13 @@
+@charset "UTF-8";
+
+// GLOBAL COLORS
+:root {
+  --text-color: rgba(12, 5, 5, 0.87);
+  --text-color-secondary: textSecondaryColor;
+  --app-color: #FF5858;
+  --app-color-text: #FF5858;
+}
+
 @media (min-width: 992px){
     .typo-line{
         padding-left: 140px;
