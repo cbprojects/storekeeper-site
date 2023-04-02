@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ObjectModelInitializer } from 'src/app/config/ObjectModelInitializer';
-import { ConceptoFacturaModel } from 'src/app/model/concepto-factura-model';
-import { ContactoModel } from 'src/app/model/contacto-model';
-import { FacturaConsultaDTOModel } from 'src/app/model/dto/factura-consulta-dto';
-import { EmpresaModel } from 'src/app/model/empresa-model';
-import { TareaModel } from 'src/app/model/tarea-model';
+import { environment } from 'src/environments/environment';
 
 declare var $: any;
 
@@ -14,16 +10,10 @@ declare var $: any;
 export class SesionService {
   // Fases
   objServiceSesion: any;
-  objContactoCargado: ContactoModel | undefined;
-  objEmpresaCargado: EmpresaModel | undefined;
-  objTareaCargado: TareaModel | undefined;
-  objFacturaCargado: FacturaConsultaDTOModel | undefined;
-  objConceptoFacturaCargado: ConceptoFacturaModel | undefined;
-  contactoEnSesionTB: ContactoModel | undefined;
   usuarioRestaurarClave: any;
   esLogueado: boolean = false;
 
-  constructor(public objectModelInitializer: ObjectModelInitializer) {
+  constructor(public omi: ObjectModelInitializer) {
     this.inicializar();
     if (localStorage.getItem('objServiceSesion') !== undefined && localStorage.getItem('objServiceSesion') !== null) {
       this.objServiceSesion = JSON.parse(JSON.stringify(localStorage.getItem('objServiceSesion')));
@@ -31,13 +21,7 @@ export class SesionService {
   }
 
   inicializar() {
-    this.objContactoCargado = undefined;
-    this.objEmpresaCargado = undefined;
-    this.objTareaCargado = undefined;
-    this.objFacturaCargado = undefined;
-    this.objConceptoFacturaCargado = undefined;
-
-    this.objServiceSesion = this.objectModelInitializer.getDataServiceSesion();
+    this.objServiceSesion = this.omi.getDataServiceSesion();
     this.objServiceSesion.phase = undefined;
     this.objServiceSesion.usuarioSesion = undefined;
     this.objServiceSesion.usuarioRegister = undefined;
@@ -48,7 +32,7 @@ export class SesionService {
     this.objServiceSesion.mensajeError404 = undefined;
     this.objServiceSesion.mensajeError500 = undefined;
     this.objServiceSesion.mensajeConfirmacion = undefined;
-    this.objServiceSesion.idioma = this.objectModelInitializer.getConst().idiomaEs;
+    this.objServiceSesion.idioma = environment.idiomaEs;
   }
 
   getUsuarioSesionActual() {
@@ -63,25 +47,11 @@ export class SesionService {
 
   }
 
-  tienePermisos(URLactual: String) {
-    let resultTienePermisos = false;
-    if (this.objServiceSesion.usuarioSesion.usuarioTb !== undefined && this.objServiceSesion.usuarioSesion.usuarioTb !== null && this.objServiceSesion.usuarioSesion.usuarioTb.listaRoles !== undefined && this.objServiceSesion.usuarioSesion.usuarioTb.listaRoles !== null) {
-      for (let i in this.objServiceSesion.usuarioSesion.usuarioTb.listaRoles) {
-        let rolUsuario = this.objServiceSesion.usuarioSesion.usuarioTb.listaRoles[i];
-
-        if (!URLactual.includes("dashboard")) {
-          if (URLactual.includes(rolUsuario.path) || rolUsuario.codigo === this.objectModelInitializer.getConst().codigoADMIN) {
-            resultTienePermisos = true;
-            break;
-          }
-        }
-        else {
-          resultTienePermisos = true;
-          break;
-        }
-      }
+  loadUser() {
+    let user = localStorage.getItem("usuarioSesionContactM");
+    if (user !== undefined && user !== null) {
+      this.objServiceSesion.usuarioSesion = JSON.parse(user);
+      this.objServiceSesion.esLogueado = true;
     }
-
-    return resultTienePermisos;
   }
 }

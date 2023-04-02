@@ -31,14 +31,14 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/bootstrap/scss/bootstrap.scss",
+              "./src/assets/scss/bootstrap.scss",
               "./src/assets/scss/primeng/primeicons.scss",
               "./src/assets/scss/primeng/primeng.scss",
               "./src/assets/scss/primeng/primeflex.scss",
-              "./src/assets/scss/animate.scss",
-              "./src/assets/scss/paper-dashboard.scss",
               "./src/assets/scss/primeng/themes/nova.scss",
-              "./src/assets/scss/wpp.scss",
+              "./src/assets/scss/animate.scss",
+              "./src/assets/scss/themify-icons.scss",
+              "./src/assets/scss/paper-dashboard.scss",
               "./src/styles.scss"
             ],
             "scripts": [
@@ -46,9 +46,9 @@
               "./src/assets/js/popper.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
               "./src/assets/js/bootstrap-material-design.min.js",
-              "./src/assets/js/paper-dashboard.js",
               "./node_modules/chart.js/dist/chart.js",
-              "./src/assets/js/wpp.js",
+              "./src/assets/js/paper-dashboard.js",
+              "./src/assets/js/chartist.min.js",
               "./src/assets/js/main.js"
             ]
           },
@@ -116,14 +116,14 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/bootstrap/scss/bootstrap.scss",
+              "./src/assets/scss/bootstrap.scss",
               "./src/assets/scss/primeng/primeicons.scss",
               "./src/assets/scss/primeng/primeng.scss",
               "./src/assets/scss/primeng/primeflex.scss",
-              "./src/assets/scss/animate.scss",
-              "./src/assets/scss/paper-dashboard.scss",
               "./src/assets/scss/primeng/themes/nova.scss",
-              "./src/assets/scss/wpp.scss",
+              "./src/assets/scss/animate.scss",
+              "./src/assets/scss/themify-icons.scss",
+              "./src/assets/scss/paper-dashboard.scss",
               "./src/styles.scss"
             ],
             "scripts": [
@@ -131,9 +131,9 @@
               "./src/assets/js/popper.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js",
               "./src/assets/js/bootstrap-material-design.min.js",
-              "./src/assets/js/paper-dashboard.js",
               "./node_modules/chart.js/dist/chart.js",
-              "./src/assets/js/wpp.js",
+              "./src/assets/js/paper-dashboard.js",
+              "./src/assets/js/chartist.min.js",
               "./src/assets/js/main.js"
             ]
           }

@@ -8,6 +8,14 @@
   --app-color-text: #FF5858;
 }
 
+.display-flex {
+    display: flex;
+}
+
+.w100 {
+    width: 100%;
+}
+
 @media (min-width: 992px){
     .typo-line{
         padding-left: 140px;

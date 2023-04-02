@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { environment } from 'src/environments/environment';
 import { SesionService } from '../services/sesionService/sesion.service';
 import { Enumerados } from './Enumerados';
 import { Functions } from './Functions';
@@ -14,19 +15,18 @@ export var objs: any;
 export class Util {
   msg: any;
   mensaje: any;
-  const: any;
+
   enums: any;
   modeloTablas: any;
   func: any;
   usuarioEjemplo: any;
 
-  constructor(public textProperties: TextProperties, public objectModelInitializer: ObjectModelInitializer, public enumerados: Enumerados, public sesionService: SesionService, dataFunctions: Functions, private messageService: MessageService) {
-    this.mensaje = this.objectModelInitializer.getDataMessage();
-    this.const = this.objectModelInitializer.getConst();
+  constructor(public textProperties: TextProperties, public omi: ObjectModelInitializer, public enumerados: Enumerados, public sesionService: SesionService, dataFunctions: Functions, private messageService: MessageService) {
+    this.mensaje = this.omi.getDataMessage();
     this.msg = this.textProperties.getProperties(this.sesionService.objServiceSesion.idioma);
     this.func = dataFunctions;
     this.enums = this.enumerados.getEnumerados();
-    this.modeloTablas = this.objectModelInitializer.getDataModeloTablas();
+    this.modeloTablas = this.omi.getDataModeloTablas();
   }
 
   cargarMatrizPorcentajeUri() {
@@ -35,16 +35,16 @@ export class Util {
 
     //%20	%21	%22	%23	%24	%25	%26	%27	%28	%29	
     //     !   "	 #	 $	 %   &	 '	 (	 )
-    let ESPACIO = this.objectModelInitializer.getDataPorcentajeURIWeb('%20', ' ');
-    let CIERRA_ADMIRACION = this.objectModelInitializer.getDataPorcentajeURIWeb('%21', '!');
-    let COMILLA_DOBLE = this.objectModelInitializer.getDataPorcentajeURIWeb('%22', '\"');
-    let NUMERAL = this.objectModelInitializer.getDataPorcentajeURIWeb('%23', '#');
-    let DOLAR = this.objectModelInitializer.getDataPorcentajeURIWeb('%24', '$');
-    let PORCENTAJE = this.objectModelInitializer.getDataPorcentajeURIWeb('%25', '%');
-    let AMPER = this.objectModelInitializer.getDataPorcentajeURIWeb('%26', '&');
-    let COMILLA_SIMPLE = this.objectModelInitializer.getDataPorcentajeURIWeb('%27', '\'');
-    let ABRE_PARENTESIS = this.objectModelInitializer.getDataPorcentajeURIWeb('%28', '(');
-    let CIERRA_PARENTESIS = this.objectModelInitializer.getDataPorcentajeURIWeb('%29', ')');
+    let ESPACIO = this.omi.getDataPorcentajeURIWeb('%20', ' ');
+    let CIERRA_ADMIRACION = this.omi.getDataPorcentajeURIWeb('%21', '!');
+    let COMILLA_DOBLE = this.omi.getDataPorcentajeURIWeb('%22', '\"');
+    let NUMERAL = this.omi.getDataPorcentajeURIWeb('%23', '#');
+    let DOLAR = this.omi.getDataPorcentajeURIWeb('%24', '$');
+    let PORCENTAJE = this.omi.getDataPorcentajeURIWeb('%25', '%');
+    let AMPER = this.omi.getDataPorcentajeURIWeb('%26', '&');
+    let COMILLA_SIMPLE = this.omi.getDataPorcentajeURIWeb('%27', '\'');
+    let ABRE_PARENTESIS = this.omi.getDataPorcentajeURIWeb('%28', '(');
+    let CIERRA_PARENTESIS = this.omi.getDataPorcentajeURIWeb('%29', ')');
     listaRefPorcentajesUri.push(ESPACIO);
     listaRefPorcentajesUri.push(CIERRA_ADMIRACION);
     listaRefPorcentajesUri.push(COMILLA_DOBLE);
@@ -58,12 +58,12 @@ export class Util {
 
     //%2A	%2B %2C	%2D	%2E	%2F	
     // *	 +   ,	 -   .   /
-    let ASTERISCO = this.objectModelInitializer.getDataPorcentajeURIWeb('%2A', '*');
-    let SIGNO_MAS = this.objectModelInitializer.getDataPorcentajeURIWeb('%2B', '+');
-    let COMA = this.objectModelInitializer.getDataPorcentajeURIWeb('%2C', ',');
-    let SIGNO_MENOS = this.objectModelInitializer.getDataPorcentajeURIWeb('%2D', '-');
-    let PUNTO = this.objectModelInitializer.getDataPorcentajeURIWeb('%2E', '.');
-    let SLASH = this.objectModelInitializer.getDataPorcentajeURIWeb('%2F', '/');
+    let ASTERISCO = this.omi.getDataPorcentajeURIWeb('%2A', '*');
+    let SIGNO_MAS = this.omi.getDataPorcentajeURIWeb('%2B', '+');
+    let COMA = this.omi.getDataPorcentajeURIWeb('%2C', ',');
+    let SIGNO_MENOS = this.omi.getDataPorcentajeURIWeb('%2D', '-');
+    let PUNTO = this.omi.getDataPorcentajeURIWeb('%2E', '.');
+    let SLASH = this.omi.getDataPorcentajeURIWeb('%2F', '/');
     listaRefPorcentajesUri.push(ASTERISCO);
     listaRefPorcentajesUri.push(SIGNO_MAS);
     listaRefPorcentajesUri.push(COMA);
@@ -73,13 +73,13 @@ export class Util {
 
     //%3A	%3B	%3C	%3D	%3E	%3F	%40
     // :	 ;	 <   =	 >   ?	 @
-    let DOS_PUNTOS = this.objectModelInitializer.getDataPorcentajeURIWeb('%3A', ':');
-    let PUNTO_COMA = this.objectModelInitializer.getDataPorcentajeURIWeb('%3B', ';');
-    let MENOR_QUE = this.objectModelInitializer.getDataPorcentajeURIWeb('%3C', '<');
-    let SIGNO_IGUAL = this.objectModelInitializer.getDataPorcentajeURIWeb('%3D', '=');
-    let MAYOR_QUE = this.objectModelInitializer.getDataPorcentajeURIWeb('%3E', '>');
-    let CIERRA_PREGUNTA = this.objectModelInitializer.getDataPorcentajeURIWeb('%3F', '?');
-    let ARROBA = this.objectModelInitializer.getDataPorcentajeURIWeb('%40', '@');
+    let DOS_PUNTOS = this.omi.getDataPorcentajeURIWeb('%3A', ':');
+    let PUNTO_COMA = this.omi.getDataPorcentajeURIWeb('%3B', ';');
+    let MENOR_QUE = this.omi.getDataPorcentajeURIWeb('%3C', '<');
+    let SIGNO_IGUAL = this.omi.getDataPorcentajeURIWeb('%3D', '=');
+    let MAYOR_QUE = this.omi.getDataPorcentajeURIWeb('%3E', '>');
+    let CIERRA_PREGUNTA = this.omi.getDataPorcentajeURIWeb('%3F', '?');
+    let ARROBA = this.omi.getDataPorcentajeURIWeb('%40', '@');
     listaRefPorcentajesUri.push(DOS_PUNTOS);
     listaRefPorcentajesUri.push(PUNTO_COMA);
     listaRefPorcentajesUri.push(MENOR_QUE);
@@ -89,11 +89,11 @@ export class Util {
     listaRefPorcentajesUri.push(ARROBA);
 
     // ACENTOS
-    let TILDE_A = this.objectModelInitializer.getDataPorcentajeURIWeb('%C3%A1', 'á');
-    let TILDE_E = this.objectModelInitializer.getDataPorcentajeURIWeb('%C3%A9', 'é');
-    let TILDE_I = this.objectModelInitializer.getDataPorcentajeURIWeb('%ED', 'í');
-    let TILDE_O = this.objectModelInitializer.getDataPorcentajeURIWeb('%F3', 'ó');
-    let TILDE_U = this.objectModelInitializer.getDataPorcentajeURIWeb('%FA', 'ú');
+    let TILDE_A = this.omi.getDataPorcentajeURIWeb('%C3%A1', 'á');
+    let TILDE_E = this.omi.getDataPorcentajeURIWeb('%C3%A9', 'é');
+    let TILDE_I = this.omi.getDataPorcentajeURIWeb('%ED', 'í');
+    let TILDE_O = this.omi.getDataPorcentajeURIWeb('%F3', 'ó');
+    let TILDE_U = this.omi.getDataPorcentajeURIWeb('%FA', 'ú');
     listaRefPorcentajesUri.push(TILDE_A);
     listaRefPorcentajesUri.push(TILDE_E);
     listaRefPorcentajesUri.push(TILDE_I);
@@ -102,17 +102,17 @@ export class Util {
 
     //%5B	%5D %5C	%5E	%5F	%60	%7B	%7C	%7D	%7E	%C2%B4
     // [	 ]   \	 ^	 _   `	 { 	 |	 }	 ~ 	  ´  
-    let ABRE_LLAVE_ANGULAR = this.objectModelInitializer.getDataPorcentajeURIWeb('%5B', '[');
-    let CIERRA_LLAVE_ANGULAR = this.objectModelInitializer.getDataPorcentajeURIWeb('%5D', ']');
-    let SLASH_INVERTIDO = this.objectModelInitializer.getDataPorcentajeURIWeb('%5C', '\\');
-    let CIRCUNFLEJO = this.objectModelInitializer.getDataPorcentajeURIWeb('%5E', '^');
-    let GUION_BAJO = this.objectModelInitializer.getDataPorcentajeURIWeb('%5F', '_');
-    let ACENTO_INVERTIDO = this.objectModelInitializer.getDataPorcentajeURIWeb('%60', '`');
-    let ABRE_LLAVE = this.objectModelInitializer.getDataPorcentajeURIWeb('%7B', '{');
-    let PIPE = this.objectModelInitializer.getDataPorcentajeURIWeb('%7C', '|');
-    let CIERRA_LLAVE = this.objectModelInitializer.getDataPorcentajeURIWeb('%7D', '}');
-    let APROXIMADO = this.objectModelInitializer.getDataPorcentajeURIWeb('%7E', '~');
-    let ACENTO = this.objectModelInitializer.getDataPorcentajeURIWeb('%C2%B4', '´');
+    let ABRE_LLAVE_ANGULAR = this.omi.getDataPorcentajeURIWeb('%5B', '[');
+    let CIERRA_LLAVE_ANGULAR = this.omi.getDataPorcentajeURIWeb('%5D', ']');
+    let SLASH_INVERTIDO = this.omi.getDataPorcentajeURIWeb('%5C', '\\');
+    let CIRCUNFLEJO = this.omi.getDataPorcentajeURIWeb('%5E', '^');
+    let GUION_BAJO = this.omi.getDataPorcentajeURIWeb('%5F', '_');
+    let ACENTO_INVERTIDO = this.omi.getDataPorcentajeURIWeb('%60', '`');
+    let ABRE_LLAVE = this.omi.getDataPorcentajeURIWeb('%7B', '{');
+    let PIPE = this.omi.getDataPorcentajeURIWeb('%7C', '|');
+    let CIERRA_LLAVE = this.omi.getDataPorcentajeURIWeb('%7D', '}');
+    let APROXIMADO = this.omi.getDataPorcentajeURIWeb('%7E', '~');
+    let ACENTO = this.omi.getDataPorcentajeURIWeb('%C2%B4', '´');
     listaRefPorcentajesUri.push(ABRE_LLAVE_ANGULAR);
     listaRefPorcentajesUri.push(CIERRA_LLAVE_ANGULAR);
     listaRefPorcentajesUri.push(SLASH_INVERTIDO);
@@ -401,7 +401,7 @@ export class Util {
 
       let mensajeTitulo = { severity: '', summary: '', detail: '', sticky: true };
       Object.assign(this.mensaje, mensajeTitulo);
-      mensajeTitulo.severity = title.length > 0 ? this.const.severity[2] : this.const.severity[3];
+      mensajeTitulo.severity = title.length > 0 ? environment.severity[2] : environment.severity[3];
       mensajeTitulo.summary = title.length > 0 ? this.msg.lbl_summary_warning : this.msg.lbl_summary_unknown_danger;
       mensajeTitulo.detail = title.length > 0 ? title : this.msg.lbl_mensaje_sin_detalles_error;
       listaMensajes.push(mensajeTitulo);
@@ -422,7 +422,7 @@ export class Util {
       }
     }
     else {
-      return [{ severity: this.const.severity[3], summary: this.msg.lbl_summary_danger, detail: this.msg.lbl_mensaje_no_conexion_servidor, sticky: true }];
+      return [{ severity: environment.severity[3], summary: this.msg.lbl_summary_danger, detail: this.msg.lbl_mensaje_no_conexion_servidor, sticky: true }];
     }
 
     let audio = new Audio();
@@ -575,7 +575,7 @@ export class Util {
       listaErrores.forEach((errorMSG: string) => {
         let mensaje = { severity: '', summary: '', detail: '', sticky: true };
         Object.assign(this.mensaje, mensaje);
-        mensaje.severity = this.const.severity[3];
+        mensaje.severity = environment.severity[3];
         mensaje.summary = summary;
         mensaje.detail = errorMSG;
         if (errorMSG.length > 0) {
@@ -584,7 +584,7 @@ export class Util {
       });
     } else {
       let mensaje = { severity: '', summary: '', detail: '', sticky: true };
-      mensaje.severity = this.const.severity[3];
+      mensaje.severity = environment.severity[3];
       mensaje.summary = summary;
       mensaje.detail = this.msg.lbl_mensaje_sin_detalles_error;
       listaMensajes.push(mensaje);

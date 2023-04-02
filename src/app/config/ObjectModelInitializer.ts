@@ -1,18 +1,12 @@
 import { Injectable } from '@angular/core';
 
-//export var HOST = 'http://localhost:9002';
-//export var HOST = 'https://10.176.56.211:9002';
-export var HOST = 'https://cbaeneprojects.com:8443/CentralContactos';
-
-//export var SYSTEM = 'http://localhost:4200';
-//export var SYSTEM = 'https://10.176.56.211:7001';
-export var SYSTEM = 'https://www.contact-manager.cbaeneprojects.com';
-
 @Injectable()
 export class ObjectModelInitializer {
 
   constructor() {
   }
+
+  // Shared
 
   getLocaleESForCalendar() {
     return {
@@ -40,95 +34,63 @@ export class ObjectModelInitializer {
     }
   };
 
-  getConst() {
+  getDataPorcentajeURIWeb(code: String, symbol: String) {
     return {
-      // URL'S + Info del Sistema
-      urlDomain: `${SYSTEM}/`,
-      urlRestService: `${HOST}/`,
-      urlRestOauth: `${HOST}/oauth/token`,
-      urlVCode: `${SYSTEM}/vCode/`,
-      // Usuarios
-      urlLoginUsuario: `${HOST}/central/contactos/loginUsuario`,
-      urlRestaurarClave: `${HOST}/central/contactos/restaurarClave`,
-      urlModificarClaveUsuario: `${HOST}/central/contactos/modificarClaveUsuario`,
-      // Archivos
-      urlEnviarEmailContacto: `${HOST}/central/contactos/archivos/enviarEmailContacto`,
-      urlEnviarEmailContactoCliente: `${HOST}/central/contactos/archivos/emailContactoCliente`,
-      urlEnviarEmailFactura: `${HOST}/central/contactos/archivos/enviarEmailFactura`,
-      urlGenerarReporteFactura: `${HOST}/central/contactos/reportes/generarReporteFactura`,
-      // Contactos
-      urlContarContactos: `${HOST}/central/contactos/contarContactos`,
-      urlConsultarContactosPorFiltros: `${HOST}/central/contactos/consultarContactosPorFiltros`,
-      urlCrearContacto: `${HOST}/central/contactos/crearContacto`,
-      urlModificarContacto: `${HOST}/central/contactos/modificarContacto`,
-      // Empresas
-      urlContarEmpresas: `${HOST}/central/contactos/contarEmpresas`,
-      urlConsultarEmpresasPorFiltros: `${HOST}/central/contactos/consultarEmpresasPorFiltros`,
-      urlCrearEmpresa: `${HOST}/central/contactos/crearEmpresa`,
-      urlModificarEmpresa: `${HOST}/central/contactos/modificarEmpresa`,
-      // Tareas
-      urlContarTarea: `${HOST}/central/contactos/contarTareas`,
-      urlConsultarTareasPorFiltros: `${HOST}/central/contactos/consultarTareasPorFiltros`,
-      urlCrearTarea: `${HOST}/central/contactos/crearTarea`,
-      urlModificarTarea: `${HOST}/central/contactos/modificarTarea`,
-      // Seguimiento
-      urlSeguimientoContacto: `${HOST}/central/contactos/seguimientoContacto`,
-      urlConsultarIdContactosSeg: `${HOST}/central/contactos/consultarIdContactosSeg`,
-      urlCrearSeguimiento: `${HOST}/central/contactos/crearSeguimiento`,
-      urlModificarSeguimiento: `${HOST}/central/contactos/modificarSeguimiento`,
-      // Facturas
-      urlContarFacturas: `${HOST}/central/contactos/contarFacturas`,
-      urlConsultarFacturasPorFiltros: `${HOST}/central/contactos/consultarFacturasPorFiltros`,
-      urlCrearFactura: `${HOST}/central/contactos/crearFactura`,
-      urlModificarFactura: `${HOST}/central/contactos/modificarFactura`,
-      urlEliminarFactura: `${HOST}/central/contactos/eliminarFactura`,
-      // Conceptos Facturas
-      urlContarConceptosFacturas: `${HOST}/central/contactos/contarConceptosFacturas`,
-      urlConsultarConceptosFacturasPorFiltros: `${HOST}/central/contactos/consultarConceptosFacturasPorFiltros`,
-      urlCrearConceptoFactura: `${HOST}/central/contactos/crearConceptoFactura`,
-      urlModificarConceptoFactura: `${HOST}/central/contactos/modificarConceptoFactura`,
-      // Otras Parametrizaciones
-      tokenRecordarClave: '3vkd3ugAOnnXZGfUER8',
-      correoRemitente: 'XXX@gmail.com',
-      tokenUsernameAUTH: 'BaeneApp',
-      tokenPasswordAUTH: 'Baene2021codex',
-      tokenNameAUTH: 'access_token',
-      codigoADMIN: 'RMRADM',
-
-      // Model rango de fechas para NGBDatePicker
-      minDate: { year: 1000, month: 1, day: 1 },
-      maxDate: new Date(),
-      actualDate: new Date(),
-      formatoFecha: 'dd/mm/yy',
-      rangoYears: '1900:3000',
-
-      // Otras Variables
-      idiomaEs: 1,
-      idiomaEn: 2,
-      phaseAdd: 'add',
-      phaseDelete: 'delete',
-      phaseSearch: 'search',
-      phaseEdit: 'edit',
-      phasePlus: 'plus',
-      tipoCampoTexto: 1,
-      tipoCampoEnum: 2,
-      disabled: 'disabled',
-      readOnly: 'readOnly',
-      severity: ['info', 'success', 'warn', 'error'],
-      actionModal: { 'show': 1, 'hidde': 2 },
-      collectionSize: 0,
-      maxSize: 1,
-      rotate: true,
-      pageSize: 1,
-      menuConfiguracion: "C",
-      menuAdministracion: "A",
-      menuInventario: "I",
-      menuAgenda: "G",
-      menuMovimientos: "M",
-      estadoActivoNumString: 1,
-      estadoInactivoNumString: 0
+      codigo: code,
+      simbolo: symbol
     }
   };
+
+  getDataEnumerado() {
+    return {
+      label: '',
+      value: 0
+    }
+  }
+
+  getDataMessage() {
+    return {
+      // info, success, warning, danger
+      severity: '',
+      // Title of MSG
+      summary: '',
+      // Description of MSG
+      detail: ''
+    }
+  };
+
+  getDataRequestEmailDtoModel() {
+    return {
+      desde: '',
+      para: [],
+      asunto: '',
+      parametros: []
+    }
+  };
+
+  getDataModeloTablas() {
+    return {
+      // Campo de la tabla
+      field: '',
+      // Encabezado
+      header: ''
+    }
+  };
+
+  initializerMenuModel() {
+    return {
+      index: 0,
+      title: "",
+      subtitle: "",
+      link: "",
+      icon: "",
+      active: false,
+      disable: false,
+      severity: ""
+    }
+  };
+
+  // Identity
 
   getDataServiceSesion() {
     return {
@@ -158,32 +120,69 @@ export class ObjectModelInitializer {
     }
   };
 
-  getDataModeloTablas() {
+  // Core Model
+
+  initializerBillConceptModel() {
     return {
-      // Campo de la tabla
-      field: '',
-      // Encabezado
-      header: ''
+      code: "",
+      concept: "",
+      description: "",
+      measurement_unit: "",
+      product_type: "",
+      quantity: 0,
+      amount: 0,
+      total_amount: 0
     }
   };
 
-  getDataMessage() {
+  initializerBillCompanyModel() {
     return {
-      // info, success, warning, danger
-      severity: '',
-      // Title of MSG
-      summary: '',
-      // Description of MSG
-      detail: ''
+      business_name: "",
+      document_number: "",
+      document_type: ""
     }
   };
 
-  getDataImagenGalleria(nombreImagen: string, rutaImagen: string) {
+  initializerBillClientModel() {
     return {
-      previewImageSrc: rutaImagen,
-      thumbnailImageSrc: rutaImagen,
-      alt: nombreImagen,
-      title: nombreImagen
+      name: "",
+      document_number: "",
+      document_type: ""
+    }
+  };
+
+  initializerBillProviderModel() {
+    return {
+      name: "",
+      document_number: "",
+      document_type: ""
+    }
+  };
+
+  initializerBillModel() {
+    return {
+      _id: "",
+      bill_id: 0,
+      status: "",
+      description: "",
+      city: "",
+      address: "",
+      concepts: [],
+      taxes: [],
+      bill_type: "",
+      payment_method: "",
+      bill_date: new Date(),
+      expiry_date: new Date(),
+      company: this.initializerBillCompanyModel(),
+      initializerBillProviderModel: this.initializerBillProviderModel(),
+      client: this.initializerBillClientModel(),
+
+      // Auditoria
+      create_user: '',
+      update_user: '',
+      create_date: new Date(),
+      update_date: new Date(),
+      _class: ""
     }
   };
 
@@ -233,48 +232,6 @@ export class ObjectModelInitializer {
     }
   };
 
-  getDataDTOTareaModel() {
-    return {
-      seleccionado: false,
-      tareaTB: this.getDataTareaModel()
-    }
-  };
-
-  getDataDTOFacturaModel() {
-    return {
-      total: 0,
-      facturaTB: this.getDataFacturaModel(),
-      conceptoTempTB: this.getDataEnumerado()
-    }
-  };
-
-  getDataRequestEmailDtoModel() {
-    return {
-      desde: '',
-      para: [],
-      asunto: '',
-      parametros: []
-    }
-  };
-
-  getDataRequestContactoEmailDtoModel() {
-    return {
-      desde: '',
-      destinatarios: [],
-      asunto: ''
-    }
-  };
-
-  getDataRequestContactoXEmpresaEmailDtoModel() {
-    return {
-      desde: '',
-      empresa: this.getDataEmpresaModel(),
-      destinatarios: [],
-      asunto: '',
-      template: ''
-    }
-  };
-
   getDataEmpresaModel() {
     return {
       idEmpresa: 0,
@@ -295,65 +252,6 @@ export class ObjectModelInitializer {
       usuarioActualizacion: ''
     }
   };
-
-  getDataTareaModel() {
-    return {
-      idTarea: 0,
-      descripcion: '',
-      fechaRecordatorio: '',
-      realizado: false,
-
-      // Auditoria
-      estado: 0,
-      fechaCreacion: '',
-      fechaActualizacion: '',
-      usuarioCreacion: '',
-      usuarioActualizacion: ''
-    }
-  };
-
-  getDataFacturaModel() {
-    return {
-      idFactura: 0,
-      numeroFactura: 0,
-      conceptoFacturaTB: this.getDataConceptoFacturaModel(),
-      tipoFactura: 0,
-      cantidad: 0,
-      valorTotal: 0,
-
-      // Auditoria
-      estado: 0,
-      fechaCreacion: '',
-      fechaActualizacion: '',
-      usuarioCreacion: '',
-      usuarioActualizacion: ''
-    }
-  };
-
-  getDataConceptoFacturaModel() {
-    return {
-      idConcepto: 0,
-      codigo: '',
-      descripcion: '',
-      unidad: '',
-      tipoConcepto: '',
-      valorUnitario: 0,
-
-      // Auditoria
-      estado: 0,
-      fechaCreacion: '',
-      fechaActualizacion: '',
-      usuarioCreacion: '',
-      usuarioActualizacion: ''
-    }
-  };
-
-  getDataEnumerado() {
-    return {
-      label: '',
-      value: 0
-    }
-  }
 
   getDataRequestFacturacionDTOModel() {
     return {
@@ -379,29 +277,5 @@ export class ObjectModelInitializer {
       contactoTB: this.getDataContactoModel()
     }
   }
-
-  getDataPorcentajeURIWeb(code: String, symbol: String) {
-    return {
-      codigo: code,
-      simbolo: symbol
-    }
-  };
-
-  getDataSeguimientoModel() {
-    return {
-      idSeguimiento: 0,
-      descripcion: '',
-      contactoTB: this.getDataContactoModel(),
-      fechaSeguimiento: '',
-      nivel: 0,
-
-      // Auditoria
-      estado: 0,
-      fechaCreacion: '',
-      fechaActualizacion: '',
-      usuarioCreacion: '',
-      usuarioActualizacion: ''
-    }
-  };
 
 }

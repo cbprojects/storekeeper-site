@@ -5,8 +5,9 @@ import { Enumerados } from 'src/app/config/Enumerados';
 import { ObjectModelInitializer } from 'src/app/config/ObjectModelInitializer';
 import { TextProperties } from 'src/app/config/TextProperties';
 import { Util } from 'src/app/config/Util';
-import { EmpresaModel } from 'src/app/model/empresa-model';
+import { EmpresaModel } from 'src/app/model/company/empresa-model';
 import { SesionService } from 'src/app/services/sesionService/sesion.service';
+import { environment } from 'src/environments/environment';
 import { RestService } from '../../../services/rest.service';
 
 declare var $: any;
@@ -23,19 +24,18 @@ export class MEmpresaComponent implements OnInit {
   sesion: any;
 
   // Objetos de datos
-  empresa: EmpresaModel = this.objectModelInitializer.getDataEmpresaModel();
+  empresa: EmpresaModel = this.omi.getDataEmpresaModel();
   esNuevaEmpresa: boolean = false;
 
   enumIndustria: any[] = [];
 
   // Utilidades
   msg: any;
-  const: any;
 
-  constructor(private router: Router, private route: ActivatedRoute, public restService: RestService, public textProperties: TextProperties, public util: Util, public objectModelInitializer: ObjectModelInitializer, public enumerados: Enumerados, public sesionService: SesionService, private messageService: MessageService) {
-    this.sesion = this.objectModelInitializer.getDataServiceSesion();
+
+  constructor(private router: Router, private route: ActivatedRoute, public restService: RestService, public textProperties: TextProperties, public util: Util, public omi: ObjectModelInitializer, public enumerados: Enumerados, public sesionService: SesionService, private messageService: MessageService) {
+    this.sesion = this.omi.getDataServiceSesion();
     this.msg = this.textProperties.getProperties(this.sesionService.objServiceSesion.idioma);
-    this.const = this.objectModelInitializer.getConst();
   }
 
   ngOnInit() {
@@ -47,13 +47,9 @@ export class MEmpresaComponent implements OnInit {
 
   inicializar() {
     this.cargarEnumerados();
-    this.empresa = this.objectModelInitializer.getDataEmpresaModel();
+    this.empresa = this.omi.getDataEmpresaModel();
     this.empresa.industria = this.cargarValorEnumeradoIndustria(0);
     this.esNuevaEmpresa = true;
-    if (this.sesionService.objEmpresaCargado !== undefined && this.sesionService.objEmpresaCargado !== null && this.sesionService.objEmpresaCargado.idEmpresa > 0) {
-      this.empresa = this.sesionService.objEmpresaCargado;
-      this.esNuevaEmpresa = false;
-    }
     $('html').removeClass('nav-open');
     //$('#toggleMenuMobile').click();
   }
@@ -78,13 +74,13 @@ export class MEmpresaComponent implements OnInit {
   crearEmpresa() {
     try {
       this.empresa.industria = this.empresa.industria.value;
-      this.restService.postREST(this.const.urlCrearEmpresa, this.empresa)
+      this.restService.postREST(environment.urlCrearEmpresa, this.empresa)
         .subscribe(resp => {
           let respuesta: EmpresaModel = JSON.parse(JSON.stringify(resp));
           if (respuesta !== null) {
             // Mostrar mensaje exitoso y consultar comentarios de nuevo
             this.messageService.clear();
-            this.messageService.add({ severity: this.const.severity[1], summary: this.msg.lbl_summary_succes, detail: this.msg.lbl_info_proceso_completo, sticky: true });
+            this.messageService.add({ severity: environment.severity[1], summary: this.msg.lbl_summary_succes, detail: this.msg.lbl_info_proceso_completo, sticky: true });
 
             this.ngOnInit();
             $('.card').bootstrapMaterialDesign();
@@ -112,13 +108,13 @@ export class MEmpresaComponent implements OnInit {
   modificarEmpresa() {
     try {
       this.empresa.industria = this.empresa.industria.value;
-      this.restService.putREST(this.const.urlModificarEmpresa, this.empresa)
+      this.restService.putREST(environment.urlModificarEmpresa, this.empresa)
         .subscribe(resp => {
           let respuesta: EmpresaModel = JSON.parse(JSON.stringify(resp));
           if (respuesta !== null) {
             // Mostrar mensaje exitoso y consultar comentarios de nuevo
             this.messageService.clear();
-            this.messageService.add({ severity: this.const.severity[1], summary: this.msg.lbl_summary_succes, detail: this.msg.lbl_info_proceso_completo, sticky: true });
+            this.messageService.add({ severity: environment.severity[1], summary: this.msg.lbl_summary_succes, detail: this.msg.lbl_info_proceso_completo, sticky: true });
 
             this.volverConsulta();
           }

@@ -1,124 +1,18 @@
-<p-toast></p-toast>
 <div class="sidebar" data-background-color="white" data-active-color="danger">
     <div class="sidebar-wrapper">
         <div class="logo">
             <img alt="logo" class="sidebar-logo" src="../../../../assets/img/logo.png" />
         </div>
 
-        <ul class="sidebar-nav">
-            <li class="item active">
-                <div routerLink="dashboard.html">
-                    <i class="ti-panel"></i>
-                    <p>Dashboard</p>
-                </div>
-            </li>
-            <li class="item">
-                <div routerLink="user.html">
-                    <i class="ti-user"></i>
-                    <p>User Profile</p>
-                </div>
-            </li>
-            <li class="item">
-                <div routerLink="table.html">
-                    <i class="ti-view-list-alt"></i>
-                    <p>Table List</p>
-                </div>
-            </li>
-            <li class="item">
-                <div routerLink="typography.html">
-                    <i class="ti-text"></i>
-                    <p>Typography</p>
-                </div>
-            </li>
-            <li class="item">
-                <div routerLink="icons.html">
-                    <i class="ti-pencil-alt2"></i>
-                    <p>Icons</p>
-                </div>
-            </li>
-            <li class="item">
-                <div routerLink="maps.html">
-                    <i class="ti-map"></i>
-                    <p>Maps</p>
-                </div>
-            </li>
-            <li class="item">
-                <div routerLink="notifications.html">
-                    <i class="ti-bell"></i>
-                    <p>Notifications</p>
-                </div>
+        <ul class="nav">
+            <li *ngFor="let item of menu" class="item {{item.active ? 'active' : ''}}">
+                <a class="w100 display-flex" [routerLink]="item.link">
+                    <i class="ti-panel fa {{item.icon}}"></i>
+                    <p>{{item.title}}</p>
+                    <p>{{item.subtitle}}</p>
+                </a>
             </li>
         </ul>
         <div class="sidebar-background" style="background-image: url(../assets/img/template/sidebar.jpg) "></div>
     </div>
 </div>
-
-<!-- Dialog Login -->
-<p-dialog [(visible)]="displayModalLogin" [modal]="true" [style]="{width: '50vw'}" [transitionOptions]="'150ms'"
-    [showHeader]="false" (onShow)="aplicarMDBLogin()">
-
-    <div id="loginMobile" class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-                <label class="bmd-label-floating">{{msg.lbl_header_usuario}}</label>
-                <input type="text" class="form-control" [(ngModel)]="usuario" (keydown)="loginEnter($event)">
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="form-group">
-                <label class="bmd-label-floating">{{msg.lbl_header_password}}</label>
-                <input type="password" class="form-control" [(ngModel)]="clave" (keydown)="loginEnter($event)">
-            </div>
-        </div>
-    </div>
-
-    <p-footer>
-        <div class="row">
-            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                <div class="pull-left font-forgot">
-                    <a class="font-black cursorPointer"
-                        (click)="irRecordarClave()">{{msg.lbl_btn_olvidaste_tu_clave}}</a>
-                </div>
-            </div>
-            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                <button type="submit" class="btn btn-secondary"
-                    (click)="cerrarModalLogin()">{{msg.lbl_btn_cancelar}}</button>
-                <button type="submit" class="btn btn-primary" (click)="login()">{{msg.lbl_login}}</button>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-    </p-footer>
-</p-dialog>
-<!-- End Dialog Login -->
-
-<!-- Dialog Restaurar Clave -->
-<p-dialog [(visible)]="displayModalRestaurar" [modal]="true" [style]="{width: '50vw'}" [transitionOptions]="'150ms'"
-    [showHeader]="false" (onShow)="aplicarMDBLogin()">
-
-    <div id="restaurarClaveMobile" class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-                <label class="bmd-label-floating">{{msg.lbl_header_usuario}}</label>
-                <input type="text" class="form-control" [(ngModel)]="usuarioRecordar" (keydown)="recordarEnter($event)">
-            </div>
-        </div>
-    </div>
-
-    <p-footer>
-        <div class="row">
-            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                <div class="pull-left font-forgot">
-                    <a class="font-black cursorPointer" (click)="irLogin()">{{msg.lbl_login}}</a>
-                </div>
-            </div>
-            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                <button type="submit" class="btn btn-secondary"
-                    (click)="cerrarModalRestaurar()">{{msg.lbl_btn_cancelar}}</button>
-                <button type="submit" class="btn btn-primary"
-                    (click)="restaurarClaveUsuario()">{{msg.lbl_header_restore_password}}</button>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-    </p-footer>
-</p-dialog>
-<!-- End Dialog Login -->

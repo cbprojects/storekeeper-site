@@ -5,8 +5,9 @@ import { Enumerados } from 'src/app/config/Enumerados';
 import { ObjectModelInitializer } from 'src/app/config/ObjectModelInitializer';
 import { TextProperties } from 'src/app/config/TextProperties';
 import { Util } from 'src/app/config/Util';
-import { UsuarioModel } from 'src/app/model/usuario-model';
+import { UsuarioModel } from 'src/app/model/identity/usuario-model';
 import { SesionService } from 'src/app/services/sesionService/sesion.service';
+import { environment } from 'src/environments/environment';
 import { RestService } from '../../services/rest.service';
 
 declare var $: any;
@@ -28,12 +29,11 @@ export class RestaurarClaveComponent implements OnInit {
 
   // Utilidades
   msg: any;
-  const: any;
 
-  constructor(private router: Router, private route: ActivatedRoute, public restService: RestService, public textProperties: TextProperties, public util: Util, public objectModelInitializer: ObjectModelInitializer, public enumerados: Enumerados, public sesionService: SesionService, private messageService: MessageService) {
-    this.sesion = this.objectModelInitializer.getDataServiceSesion();
+
+  constructor(private router: Router, private route: ActivatedRoute, public restService: RestService, public textProperties: TextProperties, public util: Util, public omi: ObjectModelInitializer, public enumerados: Enumerados, public sesionService: SesionService, private messageService: MessageService) {
+    this.sesion = this.omi.getDataServiceSesion();
     this.msg = this.textProperties.getProperties(this.sesionService.objServiceSesion.idioma);
-    this.const = this.objectModelInitializer.getConst();
   }
 
   ngOnInit() {
@@ -45,11 +45,11 @@ export class RestaurarClaveComponent implements OnInit {
 
   inicializar() {
     let URLactual = window.location.href;
-    this.usuario = this.objectModelInitializer.getDataUsuarioModel();
+    this.usuario = this.omi.getDataUsuarioModel();
     if (URLactual.split('?').length === 2) {
       let variableUser = URLactual.split("#")[1].split("?")[1].split("=")[0];
       let user = URLactual.split("#")[1].split("?")[1].split("=")[1];
-      if (user !== undefined && user !== null && variableUser === this.const.tokenRecordarClave) {
+      if (user !== undefined && user !== null && variableUser === environment.tokenRecordarClave) {
         this.usuario.usuario = user;
         this.router.navigate(['/restaurar-clave']);
       }
@@ -64,13 +64,13 @@ export class RestaurarClaveComponent implements OnInit {
     if (this.usuario && this.usuario.clave && this.usuario.clave === this.confirmarClave) {
       try {
         this.usuario.estado = 1;
-        this.restService.putREST(this.const.urlModificarClaveUsuario, this.usuario)
+        this.restService.putREST(environment.urlModificarClaveUsuario, this.usuario)
           .subscribe(resp => {
             let respuesta: UsuarioModel = JSON.parse(JSON.stringify(resp));
             if (respuesta !== null) {
               // Mostrar mensaje exitoso y consultar comentarios de nuevo
               this.messageService.clear();
-              this.messageService.add({ severity: this.const.severity[1], summary: this.msg.lbl_summary_succes, detail: this.msg.lbl_info_proceso_completo, sticky: true });
+              this.messageService.add({ severity: environment.severity[1], summary: this.msg.lbl_summary_succes, detail: this.msg.lbl_info_proceso_completo, sticky: true });
             }
           },
             error => {
@@ -92,7 +92,7 @@ export class RestaurarClaveComponent implements OnInit {
       }
     } else {
       this.messageService.clear();
-      this.messageService.add({ severity: this.const.severity[3], summary: this.msg.lbl_summary_succes, detail: this.msg.lbl_msg_claves_no_coinciden, sticky: true });
+      this.messageService.add({ severity: environment.severity[3], summary: this.msg.lbl_summary_succes, detail: this.msg.lbl_msg_claves_no_coinciden, sticky: true });
     }
 
   }

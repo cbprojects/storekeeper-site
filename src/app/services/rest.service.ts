@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { ObjectModelInitializer } from '../config/ObjectModelInitializer';
 
 const httpOptions = {
@@ -18,11 +19,11 @@ export class RestService {
   // Utilidades
   AUTH: any;
 
-  constructor(private http: HttpClient, private router: Router, public objectModelInitializer: ObjectModelInitializer) {
+  constructor(private http: HttpClient, private router: Router, public omi: ObjectModelInitializer) {
     this.AUTH = {
-      TOKEN_AUTH_USERNAME: this.objectModelInitializer.getConst().tokenUsernameAUTH,
-      TOKEN_AUTH_PASSWORD: this.objectModelInitializer.getConst().tokenPasswordAUTH,
-      TOKEN_AUTH_NAME: this.objectModelInitializer.getConst().tokenNameAUTH
+      TOKEN_AUTH_USERNAME: environment.tokenUsernameAUTH,
+      TOKEN_AUTH_PASSWORD: environment.tokenPasswordAUTH,
+      TOKEN_AUTH_NAME: environment.tokenNameAUTH
     };
   }
 
