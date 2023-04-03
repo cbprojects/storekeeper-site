@@ -1,9 +1,9 @@
-export var HOST = 'https://cbaeneprojects.com:8443/Storekeeper';
-export var SYSTEM = 'https://www.storekeeper.cbaeneprojects.com';
+export const HOST = 'https://cbaeneprojects.com:8443/Storekeeper';
+export const SYSTEM = 'https://www.storekeeper.cbaeneprojects.com';
 
 export const environment = {
   production: true,
-  version: "1.0.3",
+  version: "1.0.4",
   // URL'S + Info del Sistema
   urlDomain: `${SYSTEM}/`,
   urlRestService: `${HOST}/`,
@@ -29,11 +29,8 @@ export const environment = {
   // Misc
   idiomaEs: 1,
   idiomaEn: 2,
-  phaseAdd: 'add',
-  phaseDelete: 'delete',
-  phaseSearch: 'search',
   phaseEdit: 'edit',
-  phasePlus: 'plus',
+  phaseCreate: 'create',
   tipoCampoTexto: 1,
   tipoCampoEnum: 2,
   disabled: 'disabled',

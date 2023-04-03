@@ -1,11 +1,9 @@
-// import 'zone.js/plugins/zone-error'; // Included with Angular CLI.
-
-export var HOST = 'http://localhost:8080';
-export var SYSTEM = 'http://localhost:4200';
+export const HOST = 'http://localhost:8080';
+export const SYSTEM = 'http://localhost:4200';
 
 export const environment = {
   production: false,
-  version: "1.0.3",
+  version: "1.0.4",
   // URL'S + Info del Sistema
   urlDomain: `${SYSTEM}/`,
   urlRestService: `${HOST}/`,
