@@ -43,7 +43,7 @@ export class ObjectModelInitializer {
 
   getDataEnumerado() {
     return {
-      label: '',
+      label: "",
       value: 0
     }
   }
@@ -51,9 +51,9 @@ export class ObjectModelInitializer {
   getDataMessage() {
     return {
       // info, success, warning, danger
-      severity: '',
+      severity: "",
       // Title of MSG
-      summary: '',
+      summary: "",
       // Description of MSG
       detail: ''
     }
@@ -61,9 +61,9 @@ export class ObjectModelInitializer {
 
   getDataRequestEmailDtoModel() {
     return {
-      desde: '',
+      desde: "",
       para: [],
-      asunto: '',
+      asunto: "",
       parametros: []
     }
   };
@@ -71,7 +71,7 @@ export class ObjectModelInitializer {
   getDataModeloTablas() {
     return {
       // Campo de la tabla
-      field: '',
+      field: "",
       // Encabezado
       header: ''
     }
@@ -95,18 +95,18 @@ export class ObjectModelInitializer {
   getDataServiceSesion() {
     return {
       // data
-      phase: '',
-      usuarioSesion: '',
-      usuarioRegister: '',
-      tokenSesion: '',
-      decodedToken: '',
-      expirationDate: '',
-      idioma: '',
+      phase: "",
+      usuarioSesion: "",
+      usuarioRegister: "",
+      tokenSesion: "",
+      decodedToken: "",
+      expirationDate: "",
+      idioma: "",
 
       // Excepciones
-      mensajeError403: '',
-      mensajeError404: '',
-      mensajeError500: '',
+      mensajeError403: "",
+      mensajeError404: "",
+      mensajeError500: "",
 
       // Mensajes
       mensajeConfirmacion: ''
@@ -115,14 +115,14 @@ export class ObjectModelInitializer {
 
   getTokenSesion() {
     return {
-      name: '',
+      name: "",
       token: ''
     }
   };
 
-  // Core Model
+  // Bill Model
 
-  initializerBillConceptModel() {
+  initializerConceptBillModel() {
     return {
       code: "",
       concept: "",
@@ -135,7 +135,7 @@ export class ObjectModelInitializer {
     }
   };
 
-  initializerBillCompanyModel() {
+  initializerCompanyBillModel() {
     return {
       business_name: "",
       document_number: "",
@@ -143,7 +143,7 @@ export class ObjectModelInitializer {
     }
   };
 
-  initializerBillClientModel() {
+  initializerClientBillModel() {
     return {
       name: "",
       document_number: "",
@@ -151,17 +151,24 @@ export class ObjectModelInitializer {
     }
   };
 
-  initializerBillProviderModel() {
+  initializerProviderBillModel() {
     return {
       name: "",
       document_number: "",
       document_type: ""
+    }
+  };
+
+  initializerTaxModel() {
+    return {
+      description: "",
+      amount: 0
     }
   };
 
   initializerBillModel() {
     return {
-      _id: "",
+      _id: null,
       bill_id: 0,
       status: "",
       description: "",
@@ -173,109 +180,116 @@ export class ObjectModelInitializer {
       payment_method: "",
       bill_date: new Date(),
       expiry_date: new Date(),
-      company: this.initializerBillCompanyModel(),
-      initializerBillProviderModel: this.initializerBillProviderModel(),
-      client: this.initializerBillClientModel(),
+      company: this.initializerCompanyBillModel(),
+      initializerBillProviderModel: this.initializerProviderBillModel(),
+      client: this.initializerClientBillModel(),
 
       // Auditoria
-      create_user: '',
-      update_user: '',
+      create_user: "",
+      update_user: "",
       create_date: new Date(),
       update_date: new Date(),
       _class: ""
     }
   };
 
-  getDataContactoModel() {
+  // Product Category Model
+  initializerProductCategoryModel() {
     return {
-      idContacto: 0,
-      nombreEmpresa: '',
-      telefonoEmpresa: '',
-      descripcionEmpresa: '',
-      nombreContacto: '',
-      correoContacto: '',
-      cargoContacto: '',
-      telefonoContacto: '',
-      ciudadContacto: '',
-      procesoContacto: 0,
-      industria: 0,
+      _id: null,
+      code: "",
+      name: "",
+      description: "",
+      color: "",
+      image: "",
 
       // Auditoria
-      estado: 0,
-      fechaCreacion: '',
-      fechaActualizacion: '',
-      usuarioCreacion: '',
-      usuarioActualizacion: ''
+      create_user: "",
+      update_user: "",
+      create_date: new Date(),
+      update_date: new Date(),
+      _class: ""
     }
   };
 
-  getDataUsuarioModel() {
+  // Provider Model
+  initializerProviderModel() {
     return {
-      idUsuario: 0,
-      usuario: '',
-      clave: '',
-      correoUsuario: '',
+      _id: null,
+      code: "",
+      name: "",
+      info: this.initializerContactProviderModel(),
+      documentNumber: "",
+      documentType: "",
+      image: "",
 
       // Auditoria
-      estado: 0,
-      fechaCreacion: '',
-      fechaActualizacion: '',
-      usuarioCreacion: '',
-      usuarioActualizacion: ''
+      create_user: "",
+      update_user: "",
+      create_date: new Date(),
+      update_date: new Date(),
+      _class: ""
     }
   };
 
-  getDataDTOContactoModel() {
+  initializerContactProviderModel() {
     return {
-      seleccionado: false,
-      contactoTB: this.getDataContactoModel()
+      telephone: "",
+      email: "",
+      address: "",
+      city: ""
     }
   };
 
-  getDataEmpresaModel() {
+  // Client Model
+  initializerClientModel() {
     return {
-      idEmpresa: 0,
-      nombre: '',
-      telefono: '',
-      descripcion: '',
-      correo: '',
-      paginaWeb: '',
-      ciudad: '',
-      industria: 0,
-      color: '',
+      _id: null,
+      code: "",
+      name: "",
+      info: this.initializerContactClientModel(),
+      documentNumber: "",
+      documentType: "",
+      image: "",
 
       // Auditoria
-      estado: 0,
-      fechaCreacion: '',
-      fechaActualizacion: '',
-      usuarioCreacion: '',
-      usuarioActualizacion: ''
+      create_user: "",
+      update_user: "",
+      create_date: new Date(),
+      update_date: new Date(),
+      _class: ""
     }
   };
 
-  getDataRequestFacturacionDTOModel() {
+  initializerContactClientModel() {
     return {
-      listaFacturacion: [],
-      tipoFactura: 0,
-      total: 0
+      telephone: "",
+      email: "",
+      address: "",
+      city: ""
     }
-  }
+  };
 
-  getDataFacturaConsultaDTOModel() {
+  // Client Model
+  initializerProductModel() {
     return {
-      numeroFactura: 0,
-      total: 0,
-      tipoFactura: {},
-      listaFacturas: []
-    }
-  }
+      _id: null,
+      code: "",
+      name: "",
+      description: "",
+      stock_min: 0,
+      stock_max: 0,
+      type: "",
+      sale_price: 0,
+      price: 0,
+      image: "",
 
-  getDataReporteFacturaDTOModel() {
-    return {
-      numeroFactura: 0,
-      empresaTB: this.getDataEmpresaModel(),
-      contactoTB: this.getDataContactoModel()
+      // Auditoria
+      create_user: "",
+      update_user: "",
+      create_date: new Date(),
+      update_date: new Date(),
+      _class: ""
     }
-  }
-
+  };
 }

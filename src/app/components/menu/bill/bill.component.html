@@ -1,1 +1,100 @@
-<p>bill works!</p>
+<div class="wrapper">
+    <!-- HEADER -->
+    <app-sidebar></app-sidebar>
+    <!-- HEADER -->
+
+    <div class="main-panel">
+        <!-- HEADER -->
+        <app-header></app-header>
+        <!-- HEADER -->
+
+        <!-- CONTENT -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                        <div class="card">
+                            <div class="header display-flex">
+                                <div class="icon-big icon-success text-center">
+                                    <i class="ti-money"></i>
+                                </div>
+                                <div class="p-2 m-1">
+                                    <h4 class="title">{{title}} - {{msg.lbl_menu_consulta}}</h4>
+                                    <p class="category">{{subtitle}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="content">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label>Company</label>
+                                            <input type="text" class="form-control border-input" disabled
+                                                placeholder="Company" value="Creative Code Inc.">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Username</label>
+                                            <input type="text" class="form-control border-input" placeholder="Username"
+                                                value="michael23">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Email address</label>
+                                            <input type="email" class="form-control border-input" placeholder="Email">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row flex justify-content-center">
+                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 text-center">
+                                    <div class="m-3 pt-1">
+                                        <p-button class="w100" label="{{msg.lbl_btn_consultar}}"
+                                            icon="pi pi-search"></p-button>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 text-center">
+                                    <div class="m-3 pt-1">
+                                        <p-button class="w100" label="{{msg.lbl_btn_crear}}" (click)="toCreate()"
+                                            styleClass="p-button-outlined p-button-danger" icon="pi pi-plus"></p-button>
+                                    </div>
+                                    <p-dialog header="{{title}} - {{msg.lbl_menu_gestion}}" [(visible)]="showPnlEdit"
+                                        [modal]="true" [style]="{ width: '50vw' }" [draggable]="false"
+                                        [resizable]="false">
+                                        <app-bill-edit [bill]="selectedBill"></app-bill-edit>
+                                    </p-dialog>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-12">
+                        <div class="card">
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                        <app-bill-query></app-bill-query>
+                                    </div>
+                                </div>
+                                <div class="footer">
+                                    <hr />
+                                    <div class="stats">
+                                        <i class="ti-reload"></i> Updated now
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- CONTENT -->
+
+        <!-- FOOTER -->
+        <app-footer></app-footer>
+        <!-- FOOTER -->
+    </div>
+</div>

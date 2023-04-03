@@ -146,6 +146,7 @@ export class TextProperties {
       lbl_menu_inicio: idioma === environment.idiomaEs ? 'Inicio' : 'Home',
       lbl_menu_gestion: idioma === environment.idiomaEs ? 'Gestión' : 'Management',
       lbl_menu_consulta: idioma === environment.idiomaEs ? 'Consulta' : 'Query',
+      lbl_menu_consulta_subtitle: idioma === environment.idiomaEs ? 'Puedes filtrar tus resultados' : 'You can filter the results',
       lbl_menu_reportes: idioma === environment.idiomaEs ? 'Reportes' : 'Reports',
       lbl_menu_ubicaciones: idioma === environment.idiomaEs ? 'Ubicaciones' : 'Locations',
       lbl_menu_notificaciones: idioma === environment.idiomaEs ? 'Notificaciones' : 'Notifications',
@@ -363,41 +364,11 @@ export class TextProperties {
       lbl_enum_industria_hospital: idioma === environment.idiomaEs ? 'Hospital' : 'Hospital',
       lbl_enum_industria_minera: idioma === environment.idiomaEs ? 'Industria Minera' : 'Mining Industry',
 
-      // Mtto Contacto
-      lbl_contactos: idioma === environment.idiomaEs ? 'Contactos' : 'Contacts',
-      lbl_contactos_consulta_subtitles: idioma === environment.idiomaEs ? 'Consulta tus Contactos' : 'Check your Contacts',
-      lbl_contactos_crea_subtitles: idioma === environment.idiomaEs ? 'Crea Contactos' : 'Create Contacts',
-      lbl_contactos_actualiza_subtitles: idioma === environment.idiomaEs ? 'Actualiza tus Contactos' : 'Update your Contacts',
-      lbl_mtto_id_contacto: idioma === environment.idiomaEs ? 'ID Contacto' : 'Contact ID',
-      lbl_mtto_nombre_empresa: idioma === environment.idiomaEs ? 'Empresa' : 'Company',
-      lbl_mtto_ciudad: idioma === environment.idiomaEs ? 'Ciudad' : 'City',
-      lbl_mtto_telefono_empresa: idioma === environment.idiomaEs ? 'Teléfono Empresa' : 'Company Telephone',
-      lbl_mtto_descripcion_empresa: idioma === environment.idiomaEs ? 'Descripción Empresa' : 'Company Description',
-      lbl_mtto_nombre_contacto: idioma === environment.idiomaEs ? 'Contacto' : 'Contact',
-      lbl_mtto_correo_contacto: idioma === environment.idiomaEs ? 'Correo Contacto' : 'Contact E-Mail',
-      lbl_mtto_cargo_contacto: idioma === environment.idiomaEs ? 'Cargo Contacto' : 'Contact Position',
-      lbl_mtto_telefono_contacto: idioma === environment.idiomaEs ? 'Teléfono Contacto' : 'Contact Telephone',
-      lbl_mtto_proceso: idioma === environment.idiomaEs ? 'Proceso' : 'Process',
-      lbl_mtto_industria: idioma === environment.idiomaEs ? 'Industria' : 'Industry',
-
-      // Mtto Empresa
-      lbl_empresas: idioma === environment.idiomaEs ? 'Empresas' : 'Companies',
-      lbl_empresas_consulta_subtitles: idioma === environment.idiomaEs ? 'Consulta tus Empresas' : 'Check your Companies',
-      lbl_empresas_crea_subtitles: idioma === environment.idiomaEs ? 'Crea Empresas' : 'Create Companies',
-      lbl_empresas_actualiza_subtitles: idioma === environment.idiomaEs ? 'Actualiza tus Empresas' : 'Update your Companies',
-      lbl_mtto_id_empresa: idioma === environment.idiomaEs ? 'ID Empresa' : 'Company ID',
-      lbl_mtto_correo_empresa: idioma === environment.idiomaEs ? 'Correo Empresa' : 'Company E-Mail',
-      lbl_mtto_pagina_web: idioma === environment.idiomaEs ? 'Página Web' : 'Web Page',
-      lbl_mtto_color: idioma === environment.idiomaEs ? 'Color' : 'Color',
-
-      // Mtto Tarea
-      lbl_tareas: idioma === environment.idiomaEs ? 'Tareas' : 'Tasks',
-      lbl_tareas_consulta_subtitles: idioma === environment.idiomaEs ? 'Consulta tus Tareas' : 'Check your Tasks',
-      lbl_tareas_crea_subtitles: idioma === environment.idiomaEs ? 'Crea Tareas' : 'Create Tasks',
-      lbl_tareas_actualiza_subtitles: idioma === environment.idiomaEs ? 'Actualiza tus Tareas' : 'Update your Tasks',
-      lbl_mtto_id_tarea: idioma === environment.idiomaEs ? 'ID Tarea' : 'Task ID',
-      lbl_mtto_descripcion: idioma === environment.idiomaEs ? 'Descripción' : 'Description',
-      lbl_mtto_fecha_recordatorio: idioma === environment.idiomaEs ? 'Fecha Recordatorio' : 'Notification Date',
+      // Forms
+      lbl_forms_id: idioma === environment.idiomaEs ? 'Id' : 'Id',
+      lbl_forms_code: idioma === environment.idiomaEs ? 'Código' : 'Code',
+      lbl_forms_name: idioma === environment.idiomaEs ? 'Nombre' : 'Name',
+      lbl_forms_description: idioma === environment.idiomaEs ? 'Descripción' : 'Description',
 
       // Mtto Factura
       lbl_facturas: idioma === environment.idiomaEs ? 'Facturas' : 'Invoices',
@@ -423,14 +394,6 @@ export class TextProperties {
       lbl_mtto_tipo_concepto: idioma === environment.idiomaEs ? 'Tipo Concepto' : 'Concept Type',
       lbl_mtto_unidad: idioma === environment.idiomaEs ? 'Unidad' : 'Unit',
       lbl_mtto_valor_unitario: idioma === environment.idiomaEs ? 'Valor Unitario' : 'Unit Value',
-
-      // Mtto Seguimiento
-      lbl_seguimiento: idioma === environment.idiomaEs ? 'Seguimiento' : 'Follow-Up',
-      lbl_seguimiento_consulta_subtitles: idioma === environment.idiomaEs ? 'Realizar un seguimiento de tus Contactos' : 'Keep track of your Contacts',
-      lbl_seguimiento_crea_subtitles: idioma === environment.idiomaEs ? 'Crear un seguimiento' : 'Create a follow-up',
-      lbl_seguimiento_actualiza_subtitles: idioma === environment.idiomaEs ? 'Actualiza un seguimiento' : 'Update a follow-up',
-      lbl_mtto_id_seguimiento: idioma === environment.idiomaEs ? 'ID Seguimiento' : 'Follow-Up ID',
-      lbl_mtto_fecha_seguimiento: idioma === environment.idiomaEs ? 'Fecha Recordatorio' : 'Notification Date',
 
     }
   };

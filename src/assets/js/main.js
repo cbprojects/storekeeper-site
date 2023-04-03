@@ -1,8 +1,10 @@
 $(document).ready(function(){
 
-  demo.initChartist();
-
 });
+
+function loadGraph(){
+  demo.initChartist();
+}
 
 type = ['','info','success','warning','danger'];
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductModel } from 'src/app/model/product/product-model';
 
 @Component({
   selector: 'app-product-query',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductQueryComponent implements OnInit {
 
+  title: string = "Inventario";
+  list: ProductModel[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

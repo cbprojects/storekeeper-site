@@ -1,4 +1,4 @@
-import { ContactoModel } from "../client/contacto-model";
+import { ContactoModel } from "../client/client-model";
 
 export interface RequestContactoEMailDTOModel {
     desde: any;

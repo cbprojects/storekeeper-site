@@ -1,5 +1,5 @@
-import { ContactoModel } from "../client/contacto-model";
-import { EmpresaModel } from "../company/empresa-model";
+import { ContactoModel } from "../client/client-model";
+import { EmpresaModel } from "../company/company-model";
 
 export interface ReporteFacturaDTOModel {
     numeroFactura: any;

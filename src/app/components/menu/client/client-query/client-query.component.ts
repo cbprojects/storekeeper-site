@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClientModel } from 'src/app/model/client/client-model';
 
 @Component({
   selector: 'app-client-query',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientQueryComponent implements OnInit {
 
+  title: string = "Clientes";
+  list: ClientModel[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

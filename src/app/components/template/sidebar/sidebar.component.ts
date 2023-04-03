@@ -37,16 +37,16 @@ export class SidebarComponent implements OnInit {
   loadMenu() {
     this.menu = [];
     this.menu.push(this.createItemMenu("Dashboard", "ti-panel", "/home", true));
-    this.menu.push(this.createItemMenu("Categorías", "ti-home", "/categories"));
-    this.menu.push(this.createItemMenu("Proveedores", "ti-home", "/providers"));
-    this.menu.push(this.createItemMenu("Inventario", "ti-home", "/products"));
-    this.menu.push(this.createItemMenu("Clientes", "ti-home", "/clients"));
-    this.menu.push(this.createItemMenu("Facturación", "ti-home", "/bills"));
+    this.menu.push(this.createItemMenu("Categorías", "ti-tag", "/categories"));
+    this.menu.push(this.createItemMenu("Proveedores", "ti-briefcase", "/providers"));
+    this.menu.push(this.createItemMenu("Inventario", "ti-package", "/products"));
+    this.menu.push(this.createItemMenu("Clientes", "ti-id-badge", "/clients"));
+    this.menu.push(this.createItemMenu("Facturación", "ti-money", "/bills"));
     this.posicionarArriba();
   }
 
   createItemMenu(title: string, icon: string, link: string, active: boolean = false, disable: boolean = false, subtitle: string = "") {
-    const menu: MenuModel = this.omi.initializerMenuModel();
+    let menu: MenuModel = this.omi.initializerMenuModel();
     menu.index = this.menu ? this.menu.length + 1 : 1;
     menu.icon = icon;
     menu.active = active;
@@ -62,5 +62,15 @@ export class SidebarComponent implements OnInit {
     $('body,html').animate({
       scrollTop: 0
     }, 600);
+  }
+
+  selectMenu(selectedItem: MenuModel) {
+    this.menu.forEach(item => {
+      if (item.index === selectedItem.index) {
+        item.active = true;
+      } else {
+        item.active = false;
+      }
+    });
   }
 }

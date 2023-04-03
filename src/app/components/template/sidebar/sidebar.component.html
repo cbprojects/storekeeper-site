@@ -5,9 +5,9 @@
         </div>
 
         <ul class="nav">
-            <li *ngFor="let item of menu" class="item {{item.active ? 'active' : ''}}">
+            <li (click)="selectMenu(item)" *ngFor="let item of menu" class="item {{item.active ? 'active' : ''}}">
                 <a class="w100 display-flex" [routerLink]="item.link">
-                    <i class="ti-panel fa {{item.icon}}"></i>
+                    <i class="{{item.icon}}"></i>
                     <p>{{item.title}}</p>
                     <p>{{item.subtitle}}</p>
                 </a>

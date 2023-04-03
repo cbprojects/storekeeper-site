@@ -1,1 +1,44 @@
-<p>provider-edit works!</p>
+<div *ngIf="provider" class="card">
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-2">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_id}}</label>
+                    <input type="text" class="form-control border-input" disabled placeholder="{{msg.lbl_forms_id}}"
+                        [(ngModel)]="provider._id">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_code}}</label>
+                    <input type="text" class="form-control border-input" placeholder="{{msg.lbl_forms_code}}"
+                        [(ngModel)]="provider.code">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_name}}</label>
+                    <input type="text" class="form-control border-input" placeholder="{{msg.lbl_forms_name}}"
+                        [(ngModel)]="provider.documentNumber">
+                </div>
+            </div>
+        </div>
+
+        <div class="row flex justify-content-center">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 text-center">
+                <div class="m-3 pt-1">
+                    <p-button (click)="save()" class="w100"
+                        label="{{phase === phaseCreate ? msg.lbl_btn_crear : msg.lbl_btn_editar}}"
+                        icon="pi pi-save"></p-button>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <p-messages></p-messages>
+            </div>
+        </div>
+    </div>
+</div>

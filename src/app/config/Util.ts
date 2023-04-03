@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { MessageService } from 'primeng/api';
 import { environment } from 'src/environments/environment';
 import { SesionService } from '../services/sesionService/sesion.service';
 import { Enumerados } from './Enumerados';
@@ -21,7 +20,7 @@ export class Util {
   func: any;
   usuarioEjemplo: any;
 
-  constructor(public textProperties: TextProperties, public omi: ObjectModelInitializer, public enumerados: Enumerados, public sesionService: SesionService, dataFunctions: Functions, private messageService: MessageService) {
+  constructor(public textProperties: TextProperties, public omi: ObjectModelInitializer, public enumerados: Enumerados, public sesionService: SesionService, dataFunctions: Functions) {
     this.mensaje = this.omi.getDataMessage();
     this.msg = this.textProperties.getProperties(this.sesionService.objServiceSesion.idioma);
     this.func = dataFunctions;
@@ -136,9 +135,17 @@ export class Util {
     return uriSimbolos;
   }
 
-  limpiarExcepcion() {
-    console.clear;
-    this.messageService.clear();
+  showMessage(summary: string, detail: string, severity: string, sticky: boolean = false) {
+    let msg = { severity: severity, summary: summary, detail: detail, sticky: sticky };
+
+    return msg;
+  }
+
+  showErrorMessage(error: any, summary: string, severity: string, sticky: boolean = false) {
+    console.log(error);
+    let msg = { severity: severity, summary: summary, detail: error.error.message, sticky: sticky };
+
+    return msg;
   }
 
   actualizarLista(listaRemover: any[], listaActualizar: any[]) {

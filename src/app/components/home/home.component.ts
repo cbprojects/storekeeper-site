@@ -8,6 +8,7 @@ import { Util } from 'src/app/config/Util';
 import { SesionService } from 'src/app/services/sesionService/sesion.service';
 import { RestService } from '../.././services/rest.service';
 
+declare var loadGraph: any;
 declare var $: any;
 
 @Component({
@@ -46,6 +47,7 @@ export class HomeComponent implements OnInit {
   }
 
   inicializar() {
+    loadGraph();
   }
 
   getShadow(color: string) {
