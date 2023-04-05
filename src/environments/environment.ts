@@ -3,7 +3,7 @@ export const SYSTEM = 'http://localhost:4200';
 
 export const environment = {
   production: false,
-  version: "1.0.4",
+  version: "1.0.5",
   // URL'S + Info del Sistema
   urlDomain: `${SYSTEM}/`,
   urlRestService: `${HOST}/`,

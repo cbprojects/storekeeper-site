@@ -3,7 +3,7 @@ export const SYSTEM = 'https://www.storekeeper.cbaeneprojects.com';
 
 export const environment = {
   production: true,
-  version: "1.0.4",
+  version: "1.0.5",
   // URL'S + Info del Sistema
   urlDomain: `${SYSTEM}/`,
   urlRestService: `${HOST}/`,
