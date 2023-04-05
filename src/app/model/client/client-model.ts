@@ -2,10 +2,10 @@ import { ContactClientModel } from "./contact-client-model";
 
 export interface ClientModel {
     _id: any;
-    code: string;
+    name: string;
     info: ContactClientModel;
-    documentNumber: string;
-    documentType: string;
+    document_number: string;
+    document_type: string;
     image: string;
 
     // Auditoria

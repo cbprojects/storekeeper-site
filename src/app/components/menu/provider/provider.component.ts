@@ -10,8 +10,8 @@ import { environment } from 'src/environments/environment';
 })
 export class ProviderComponent implements OnInit {
   // Data
-  title: String = "Proveedores";
-  subtitle: String = "Panel de administración de los proveedores";
+  title: string = "Proveedores";
+  subtitle: string = "Panel de administración de los proveedores";
 
   // Common
   msg: any;

@@ -4,8 +4,8 @@ export interface CompanyModel {
     _id: any;
     business_name: string;
     info: ContactCompanyModel;
-    documentNumber: string;
-    documentType: string;
+    document_number: string;
+    document_type: string;
     image: string;
 
     // Auditoria

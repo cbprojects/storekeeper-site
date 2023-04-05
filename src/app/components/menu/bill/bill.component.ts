@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ObjectModelInitializer } from 'src/app/config/ObjectModelInitializer';
 import { TextProperties } from 'src/app/config/TextProperties';
-import { BillModel } from 'src/app/model/bill/bill-model';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -11,10 +10,8 @@ import { environment } from 'src/environments/environment';
 })
 export class BillComponent implements OnInit {
   // Data
-  title: String = "Facturación";
-  subtitle: String = "Panel de administración de órdenes de compra y venta";
-  selectedBill: BillModel | undefined;
-  showPnlEdit: boolean = false;
+  title: string = "Facturación";
+  subtitle: string = "Panel de administración de órdenes de compra y venta";
 
   // Common
   msg: any;
@@ -26,8 +23,4 @@ export class BillComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toCreate() {
-    this.selectedBill = this.omi.initializerBillModel();
-    this.showPnlEdit = true;
-  }
 }

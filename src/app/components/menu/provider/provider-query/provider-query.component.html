@@ -37,7 +37,7 @@
 
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <p-table [value]="list" [tableStyle]="{'min-width': '60rem'}">
+        <p-table [value]="list" responsiveLayout="stack" [tableStyle]="{'min-width': '80rem'}">
             <ng-template pTemplate="caption">
                 <div class="flex align-items-center justify-content-between">
                     {{title}}
@@ -46,24 +46,14 @@
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th scope="col" class="text-center">Código</th>
                     <th scope="col" class="text-center">Nombre</th>
-                    <th scope="col" class="text-center">Descripción</th>
-                    <th scope="col" class="text-center">Color</th>
+                    <th scope="col" class="text-center">Identificación</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-element>
                 <tr>
-                    <td class="text-center">{{element.code}}</td>
                     <td>{{element.name}}</td>
-                    <td>{{element.description}}</td>
-                    <td class="text-center">
-                        <p-tag [style]="{ 'background': element.color }">
-                            <div class="flex align-items-center gap-2">
-                                <i class="pi pi-palette"></i>
-                            </div>
-                        </p-tag>
-                    </td>
+                    <td>{{element.document_number}}</td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="summary">

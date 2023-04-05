@@ -10,7 +10,8 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-provider-edit',
   templateUrl: './provider-edit.component.html',
-  styleUrls: ['./provider-edit.component.scss']
+  styleUrls: ['./provider-edit.component.scss'],
+  providers: [MessageService]
 })
 export class ProviderEditComponent implements OnInit {
   // Data
@@ -39,7 +40,7 @@ export class ProviderEditComponent implements OnInit {
 
   save() {
     try {
-      this.rest.postREST(environment.urlFindProviders, this.provider).subscribe({
+      this.rest.postREST(environment.urlProviders, this.provider).subscribe({
         next: (res: any) => {
           console.log(res);
           const id = res ? res._id : 0;

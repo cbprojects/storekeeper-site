@@ -12,8 +12,8 @@ declare var $: any;
 })
 export class ProductCategoryComponent implements OnInit {
   // Data
-  title: String = "Categorías";
-  subtitle: String = "Panel de administración de categorías o rubros de sus artículos o servicios";
+  title: string = "Categorías";
+  subtitle: string = "Panel de administración de categorías o rubros de sus artículos o servicios";
 
   // Common
   msg: any;

@@ -1,93 +1,75 @@
-<div class="card">
+<div *ngIf="bill && bill.concepts" class="card">
     <div class="content">
         <div class="row">
-            <div class="col-md-5">
-                <div class="form-group">
-                    <label>Company</label>
-                    <input type="text" class="form-control border-input" disabled placeholder="Company"
-                        value="Creative Code Inc.">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 text-left">
+                        <img alt="bill-logo" class="bill-logo" src="/assets/img/logo.png" />
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" class="form-control border-input" placeholder="Username" value="michael23">
+
+                <br />
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 text-left">
+                        <div class="font-bold">Proveedor:</div>
+                        {{bill.provider.name}}<br>
+                        {{bill.provider.document_number}}<br>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 text-right">
+                        <div class="font-bold">Cliente:</div>
+                        {{bill.client.name}}<br>
+                        {{bill.client.document_number}}<br>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control border-input" placeholder="Email">
+
+                <br />
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 text-left">
+                        <div class="font-bold">Método de Pago:</div>
+                        {{bill.payment_method}}<br>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 text-right">
+                        <div class="font-bold">Fecha:</div>
+                        Marzo 7, 2023<br><br>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>First Name</label>
-                    <input type="text" class="form-control border-input" placeholder="First Name" value="Chet">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Last Name</label>
-                    <input type="text" class="form-control border-input" placeholder="Last Name" value="Faker">
-                </div>
-            </div>
-        </div>
+        <br />
 
         <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>Address</label>
-                    <input type="text" class="form-control border-input" placeholder="Home Address"
-                        value="Melbourne, Australia">
-                </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <p-table [value]="bill.concepts" responsiveLayout="stack" [tableStyle]="{'min-width': '80rem'}">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th scope="col" class="text-center">#</th>
+                            <th scope="col" class="text-center">Concepto</th>
+                            <th scope="col" class="text-center">Descripción</th>
+                            <th scope="col" class="text-center">Cantidad</th>
+                            <th scope="col" class="text-center">Valor Unitario</th>
+                            <th scope="col" class="text-center">Valor Total</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-concept>
+                        <tr>
+                            <td><span class="font-bold">{{concept.code}}: </span>{{concept.concept}}</td>
+                            <td>{{concept.description}}</td>
+                            <td>{{concept.quantity}}</td>
+                            <td>{{concept.amount | currency:'USD'}}</td>
+                            <td>{{concept.total_amount | currency:'USD'}}</td>
+                            <td><p-tag [value]="concept.inventoryStatus" [severity]="'warning'"></p-tag></td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="flex align-items-center justify-content-between">
+                            Hay un total de {{bill.concepts ? bill.concepts.length : 0 }} elementos.
+                        </div>
+                    </ng-template>
+                </p-table>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>City</label>
-                    <input type="text" class="form-control border-input" placeholder="City" value="Melbourne">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Country</label>
-                    <input type="text" class="form-control border-input" placeholder="Country" value="Australia">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label>Postal Code</label>
-                    <input type="number" class="form-control border-input" placeholder="ZIP Code">
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>About Me</label>
-                    <textarea rows="5" class="form-control border-input" placeholder="Here can be your description"
-                        value="Mike">Oh so, your weak rhyme
-You doubt I'll bother, reading into it
-I'll probably won't, left to my own devices
-But that's the difference in our opinions.</textarea>
-                </div>
-            </div>
-        </div>
-        <div class="row flex justify-content-center">
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 text-center">
-                <div class="m-3 pt-1">
-                    <p-button class="w100" label="{{phase === phaseCreate ? msg.lbl_btn_crear : msg.lbl_btn_editar}}"
-                        icon="pi pi-save"></p-button>
-                </div>
-            </div>
-            <div class="clearfix"></div>
         </div>
     </div>
 </div>

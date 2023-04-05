@@ -34,7 +34,7 @@ export class ObjectModelInitializer {
     }
   };
 
-  getDataPorcentajeURIWeb(code: String, symbol: String) {
+  getDataPorcentajeURIWeb(code: string, symbol: string) {
     return {
       codigo: code,
       simbolo: symbol
@@ -177,11 +177,11 @@ export class ObjectModelInitializer {
       concepts: [],
       taxes: [],
       bill_type: "",
-      payment_method: "",
+      payment_method: "E",
       bill_date: new Date(),
       expiry_date: new Date(),
       company: this.initializerCompanyBillModel(),
-      initializerBillProviderModel: this.initializerProviderBillModel(),
+      provider: this.initializerProviderBillModel(),
       client: this.initializerClientBillModel(),
 
       // Auditoria
@@ -216,11 +216,10 @@ export class ObjectModelInitializer {
   initializerProviderModel() {
     return {
       _id: null,
-      code: "",
       name: "",
       info: this.initializerContactProviderModel(),
-      documentNumber: "",
-      documentType: "",
+      document_number: "",
+      document_type: "",
       image: "",
 
       // Auditoria
@@ -245,11 +244,10 @@ export class ObjectModelInitializer {
   initializerClientModel() {
     return {
       _id: null,
-      code: "",
       name: "",
       info: this.initializerContactClientModel(),
-      documentNumber: "",
-      documentType: "",
+      document_number: "",
+      document_type: "CEDULA",
       image: "",
 
       // Auditoria
@@ -279,7 +277,7 @@ export class ObjectModelInitializer {
       description: "",
       stock_min: 0,
       stock_max: 0,
-      type: "",
+      type: "ARTICLE",
       sale_price: 0,
       price: 0,
       image: "",

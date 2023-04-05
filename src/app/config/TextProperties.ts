@@ -368,6 +368,7 @@ export class TextProperties {
       lbl_forms_id: idioma === environment.idiomaEs ? 'Id' : 'Id',
       lbl_forms_code: idioma === environment.idiomaEs ? 'Código' : 'Code',
       lbl_forms_name: idioma === environment.idiomaEs ? 'Nombre' : 'Name',
+      lbl_forms_document_number: idioma === environment.idiomaEs ? 'Número de Identificación' : 'Identification Number',
       lbl_forms_description: idioma === environment.idiomaEs ? 'Descripción' : 'Description',
 
       // Mtto Factura

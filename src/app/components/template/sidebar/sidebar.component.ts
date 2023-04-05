@@ -36,12 +36,24 @@ export class SidebarComponent implements OnInit {
 
   loadMenu() {
     this.menu = [];
-    this.menu.push(this.createItemMenu("Dashboard", "ti-panel", "/home", true));
+    this.menu.push(this.createItemMenu("Dashboard", "ti-panel", "/home"));
     this.menu.push(this.createItemMenu("Categorías", "ti-tag", "/categories"));
     this.menu.push(this.createItemMenu("Proveedores", "ti-briefcase", "/providers"));
     this.menu.push(this.createItemMenu("Inventario", "ti-package", "/products"));
     this.menu.push(this.createItemMenu("Clientes", "ti-id-badge", "/clients"));
     this.menu.push(this.createItemMenu("Facturación", "ti-money", "/bills"));
+
+    let menuActive = localStorage.getItem('menu-active');
+    if (menuActive) {
+      this.menu.forEach(item => {
+        if (item.link === menuActive) {
+          item.active = true;
+        }
+      });
+    } else {
+      this.menu[0].active = true;
+    }
+
     this.posicionarArriba();
   }
 
@@ -68,6 +80,8 @@ export class SidebarComponent implements OnInit {
     this.menu.forEach(item => {
       if (item.index === selectedItem.index) {
         item.active = true;
+        localStorage.setItem('menu-active', item.link);
+        this.router.navigate([item.link]);
       } else {
         item.active = false;
       }

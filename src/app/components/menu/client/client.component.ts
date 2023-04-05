@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ObjectModelInitializer } from 'src/app/config/ObjectModelInitializer';
 import { TextProperties } from 'src/app/config/TextProperties';
-import { ClientModel } from 'src/app/model/client/client-model';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -11,10 +10,8 @@ import { environment } from 'src/environments/environment';
 })
 export class ClientComponent implements OnInit {
   // Data
-  title: String = "Clientes";
-  subtitle: String = "Panel de administración de clientes";
-  selectedClient: ClientModel | undefined;
-  showPnlEdit: boolean = false;
+  title: string = "Clientes";
+  subtitle: string = "Panel de administración de clientes";
 
   // Common
   msg: any;
@@ -26,8 +23,4 @@ export class ClientComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  toCreate() {
-    this.selectedClient = this.omi.initializerClientModel();
-    this.showPnlEdit = true;
-  }
 }

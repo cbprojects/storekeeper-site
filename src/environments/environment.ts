@@ -10,9 +10,15 @@ export const environment = {
   urlRestOauth: `${HOST}/oauth/token`,
   urlVCode: `${SYSTEM}/vCode/`,
   // Products Categories
-  urlFindProductCategories: `${HOST}/product_category/v1/`,
+  urlProductCategories: `${HOST}/product_category/v1/`,
+  // Products
+  urlProducts: `${HOST}/product/v1/`,
   // Providers
-  urlFindProviders: `${HOST}/provider/v1/`,
+  urlProviders: `${HOST}/provider/v1/`,
+  // Clients
+  urlClients: `${HOST}/client/v1/`,
+  // Bills
+  urlBills: `${HOST}/bill/v1/`,
   // Params
   tokenRecordarClave: '3vkd3ugAOnnXZGfUER8',
   correoRemitente: 'XXX@gmail.com',
@@ -46,6 +52,6 @@ export const environment = {
   menuInventario: "I",
   menuAgenda: "G",
   menuMovimientos: "M",
-  estadoActivoNumString: 1,
-  estadoInactivoNumString: 0
+  estadoActivoNumstring: 1,
+  estadoInactivoNumstring: 0
 };

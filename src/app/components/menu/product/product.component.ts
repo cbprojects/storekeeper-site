@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ObjectModelInitializer } from 'src/app/config/ObjectModelInitializer';
 import { TextProperties } from 'src/app/config/TextProperties';
-import { ProductModel } from 'src/app/model/product/product-model';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -11,10 +10,8 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductComponent implements OnInit {
   // Data
-  title: String = "Inventario";
-  subtitle: String = "Panel de administración de los productos y servicios ofrecidos";
-  selectedProduct: ProductModel | undefined;
-  showPnlEdit: boolean = false;
+  title: string = "Inventario";
+  subtitle: string = "Panel de administración de los productos y servicios ofrecidos";
 
   // Common
   msg: any;
@@ -24,10 +21,5 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  toCreate() {
-    this.selectedProduct = this.omi.initializerProductModel();
-    this.showPnlEdit = true;
   }
 }

@@ -10,7 +10,8 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-provider-query',
   templateUrl: './provider-query.component.html',
-  styleUrls: ['./provider-query.component.scss']
+  styleUrls: ['./provider-query.component.scss'],
+  providers: [MessageService]
 })
 export class ProviderQueryComponent implements OnInit {
   // Data
@@ -40,7 +41,7 @@ export class ProviderQueryComponent implements OnInit {
 
   find() {
     try {
-      this.rest.getREST(environment.urlFindProviders).subscribe({
+      this.rest.getREST(environment.urlProviders).subscribe({
         next: (res: any) => {
           console.log(res);
           this.list = res.result;

@@ -1,16 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { ObjectModelInitializer } from 'src/app/config/ObjectModelInitializer';
 import { TextProperties } from 'src/app/config/TextProperties';
+import { Util } from 'src/app/config/Util';
 import { ClientModel } from 'src/app/model/client/client-model';
+import { RestService } from 'src/app/services/rest.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-client-edit',
   templateUrl: './client-edit.component.html',
-  styleUrls: ['./client-edit.component.scss']
+  styleUrls: ['./client-edit.component.scss'],
+  providers: [MessageService]
 })
 export class ClientEditComponent implements OnInit {
   // Data
   @Input() client: ClientModel | undefined;
+  @Output() saveEvent = new EventEmitter<any>();
 
   // Common
   msg: any;
@@ -18,7 +24,7 @@ export class ClientEditComponent implements OnInit {
   phaseCreate: string = environment.phaseCreate;
   phaseEdit: string = environment.phaseEdit;
 
-  constructor(private textProperties: TextProperties) {
+  constructor(private textProperties: TextProperties, private util: Util, private rest: RestService, private omi: ObjectModelInitializer, private messageService: MessageService) {
     this.msg = textProperties.getProperties(environment.idiomaEs);
   }
 
@@ -31,4 +37,24 @@ export class ClientEditComponent implements OnInit {
       this.phase = phaseSge;
     }
   }
+
+  save() {
+    try {
+      this.rest.postREST(environment.urlClients, this.client).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          const id = res ? res._id : 0;
+          const detail = `${this.msg.lbl_detail_el_registro}${id}${this.msg.lbl_detail_fue}${(this.phase === this.phaseCreate ? this.msg.lbl_detail_creado : this.msg.lbl_detail_actualizado)}${this.msg.lbl_detail_satisfactoriamente}`;
+
+          this.client = this.omi.initializerClientModel();
+          this.saveEvent.emit(this.util.showMessage(this.msg.lbl_summary_success, detail, environment.severity[1]));
+        },
+        error: (e) => this.messageService.add(this.util.showErrorMessage(e, this.msg.lbl_summary_warning, environment.severity[2]))
+      });
+    } catch (error) {
+      console.log(error);
+      this.messageService.add(this.util.showErrorMessage(error, this.msg.lbl_summary_danger, environment.severity[3]))
+    }
+  }
+
 }

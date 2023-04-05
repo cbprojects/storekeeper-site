@@ -2,10 +2,10 @@ import { ContactProviderModel } from "./contact-provider-model";
 
 export interface ProviderModel {
     _id: any;
-    code: string;
+    name: string;
     info: ContactProviderModel;
-    documentNumber: string;
-    documentType: string;
+    document_number: string;
+    document_type: string;
     image: string;
 
     // Auditoria

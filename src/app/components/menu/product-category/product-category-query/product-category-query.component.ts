@@ -10,8 +10,8 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-product-category-query',
   templateUrl: './product-category-query.component.html',
-  providers: [MessageService],
-  styleUrls: ['./product-category-query.component.scss']
+  styleUrls: ['./product-category-query.component.scss'],
+  providers: [MessageService]
 })
 export class ProductCategoryQueryComponent implements OnInit {
   // Data
@@ -41,7 +41,7 @@ export class ProductCategoryQueryComponent implements OnInit {
 
   find() {
     try {
-      this.rest.getREST(environment.urlFindProductCategories).subscribe({
+      this.rest.getREST(environment.urlProductCategories).subscribe({
         next: (res: any) => {
           console.log(res);
           this.list = res.result;

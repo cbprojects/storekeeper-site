@@ -6,7 +6,7 @@
 
         <ul class="nav">
             <li (click)="selectMenu(item)" *ngFor="let item of menu" class="item {{item.active ? 'active' : ''}}">
-                <a class="w100 display-flex" [routerLink]="item.link">
+                <a class="w100 display-flex">
                     <i class="{{item.icon}}"></i>
                     <p>{{item.title}}</p>
                     <p>{{item.subtitle}}</p>

@@ -201,7 +201,7 @@ export class Util {
     return true;
   }
 
-  getEnumValString(array: any[]) {
+  getEnumValstring(array: any[]) {
     let lis = [];
     for (let ind in array) {
       let obj = { value: 0, label: '' };

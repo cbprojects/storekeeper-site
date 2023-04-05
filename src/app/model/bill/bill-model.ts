@@ -18,7 +18,7 @@ export interface BillModel {
     bill_date: any;
     expiry_date: any;
     company: CompanyBillModel;
-    initializerBillProviderModel: ProviderBillModel;
+    provider: ProviderBillModel;
     client: ClientBillModel;
 
     // Auditoria
