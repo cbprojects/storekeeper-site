@@ -1,9 +1,9 @@
-export const HOST = 'https://cbaeneprojects.com:8443/Storekeeper';
+export const HOST = 'https://storekeeper-server-app-ry245.ondigitalocean.app';
 export const SYSTEM = 'https://www.storekeeper.cbaeneprojects.com';
 
 export const environment = {
   production: true,
-  version: "1.0.5",
+  version: "1.0.6",
   // URL'S + Info del Sistema
   urlDomain: `${SYSTEM}/`,
   urlRestService: `${HOST}/`,
