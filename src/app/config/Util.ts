@@ -143,7 +143,7 @@ export class Util {
 
   showErrorMessage(error: any, summary: string, severity: string, sticky: boolean = false) {
     console.log(error);
-    let msg = { severity: severity, summary: summary, detail: error.error.message, sticky: sticky };
+    let msg = { severity: severity, summary: summary, detail: error.error !== null ? `${error.error.message} ${error.error.detail}` : error.message, moreDetail: error.error !== null ? error.error.detail : "", sticky: sticky };
 
     return msg;
   }

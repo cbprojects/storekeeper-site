@@ -41,6 +41,8 @@ export class BillEditComponent implements OnInit {
 
   save() {
     try {
+      console.log(environment.urlBills);
+      console.log(this.bill);
       this.rest.postREST(environment.urlBills, this.bill).subscribe({
         next: (res: any) => {
           console.log(res);

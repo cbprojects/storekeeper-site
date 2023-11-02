@@ -36,10 +36,11 @@ export class Enumerados {
       },
       tipoDocumento: {
         cod: 4, valores: [
-          { value: 0, label: properties.lbl_enum_generico_valor_vacio },
-          { value: 1, label: properties.lbl_enum_tipo_documento_valor_cc },
-          { value: 2, label: properties.lbl_enum_tipo_documento_valor_ti },
-          { value: 3, label: properties.lbl_enum_tipo_documento_valor_ce }
+          { value: "0", label: properties.lbl_enum_generico_valor_vacio },
+          { value: "CEDULA", label: properties.lbl_enum_tipo_documento_valor_cc },
+          { value: "PASAPORTE", label: properties.lbl_enum_tipo_documento_valor_pa },
+          { value: "CEDULA_EXTRANJERIA", label: properties.lbl_enum_tipo_documento_valor_ce },
+          { value: "NIT", label: properties.lbl_enum_tipo_documento_valor_ni }
         ]
       },
       tipoUbicacion: {

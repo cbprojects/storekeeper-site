@@ -309,8 +309,9 @@ export class TextProperties {
       lbl_enum_tipo_usuario_valor_administrador: idioma === environment.idiomaEs ? 'Administrador' : 'Admin',
 
       lbl_enum_tipo_documento_valor_cc: idioma === environment.idiomaEs ? 'CC' : 'CC',
-      lbl_enum_tipo_documento_valor_ti: idioma === environment.idiomaEs ? 'TI' : 'TI',
+      lbl_enum_tipo_documento_valor_pa: idioma === environment.idiomaEs ? 'PA' : 'PA',
       lbl_enum_tipo_documento_valor_ce: idioma === environment.idiomaEs ? 'CE' : 'CE',
+      lbl_enum_tipo_documento_valor_ni: idioma === environment.idiomaEs ? 'NI' : 'NI',
 
       lbl_enum_tipo_ubicacion_valor_pais: idioma === environment.idiomaEs ? 'País' : 'Country',
       lbl_enum_tipo_ubicacion_valor_departamento: idioma === environment.idiomaEs ? 'Departamento/Región/Estado' : 'Department/Region/State',
@@ -366,9 +367,11 @@ export class TextProperties {
 
       // Forms
       lbl_forms_id: idioma === environment.idiomaEs ? 'Id' : 'Id',
+      lbl_forms_color: idioma === environment.idiomaEs ? 'Color' : 'Color',
       lbl_forms_code: idioma === environment.idiomaEs ? 'Código' : 'Code',
       lbl_forms_name: idioma === environment.idiomaEs ? 'Nombre' : 'Name',
       lbl_forms_document_number: idioma === environment.idiomaEs ? 'Número de Identificación' : 'Identification Number',
+      lbl_forms_document_type: idioma === environment.idiomaEs ? 'Tipo de Identificación' : 'Identification Type',
       lbl_forms_description: idioma === environment.idiomaEs ? 'Descripción' : 'Description',
 
       // Mtto Factura

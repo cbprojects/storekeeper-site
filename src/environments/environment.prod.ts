@@ -15,6 +15,8 @@ export const environment = {
   urlProducts: `${HOST}/product/v1/`,
   // Providers
   urlProviders: `${HOST}/provider/v1/`,
+  // Companies
+  urlCompanies: `${HOST}/company/v1/`,
   // Clients
   urlClients: `${HOST}/client/v1/`,
   // Bills

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { Enumerados } from 'src/app/config/Enumerados';
 import { ObjectModelInitializer } from 'src/app/config/ObjectModelInitializer';
 import { TextProperties } from 'src/app/config/TextProperties';
 import { Util } from 'src/app/config/Util';
 import { ProviderModel } from 'src/app/model/provider/provider-model';
+import { EnumItemModel } from 'src/app/model/shared/enum-item-model';
 import { RestService } from 'src/app/services/rest.service';
 import { environment } from 'src/environments/environment';
 
@@ -20,15 +22,24 @@ export class ProviderQueryComponent implements OnInit {
   showPnlEdit: boolean = false;
   filter: ProviderModel | undefined;
   selectedProvider: ProviderModel | undefined;
+  selectedPhase: string | undefined;
+  documentTypes: any = [];
 
   // Common
   msg: any;
 
-  constructor(private textProperties: TextProperties, private rest: RestService, private util: Util, private omi: ObjectModelInitializer, private messageService: MessageService) {
+  constructor(private textProperties: TextProperties, private enums: Enumerados, private rest: RestService, public util: Util, private omi: ObjectModelInitializer, private messageService: MessageService) {
     this.msg = textProperties.getProperties(environment.idiomaEs);
   }
 
   ngOnInit(): void {
+    this.inicializar();
+  }
+
+  inicializar() {
+    this.selectedPhase = environment.phaseCreate;
+    localStorage.setItem("phase", environment.phaseCreate);
+    this.documentTypes = this.enums.getEnumerados().tipoDocumento.valores;
     this.filter = this.omi.initializerProviderModel();
     this.find();
   }
@@ -36,6 +47,17 @@ export class ProviderQueryComponent implements OnInit {
   toCreate() {
     this.messageService.clear();
     this.selectedProvider = this.omi.initializerProviderModel();
+    this.selectedPhase = environment.phaseCreate;
+    localStorage.setItem("phase", environment.phaseCreate);
+    this.showPnlEdit = true;
+  }
+
+  toEdit(provider: ProviderModel) {
+    this.messageService.clear();
+    this.selectedProvider = provider;
+    this.selectedProvider.document_type = this.documentTypes.find((el: EnumItemModel) => el.value === provider.document_type);
+    this.selectedPhase = environment.phaseEdit;
+    localStorage.setItem("phase", environment.phaseEdit);
     this.showPnlEdit = true;
   }
 

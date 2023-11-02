@@ -29,6 +29,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
 import { OrganizationChartModule } from 'primeng/organizationchart';
@@ -40,25 +41,26 @@ import { TooltipModule } from 'primeng/tooltip';
 
 // Imports - Components
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
-import { BillEditComponent } from './components/menu/bill/bill-edit/bill-edit.component';
-import { BillQueryComponent } from './components/menu/bill/bill-query/bill-query.component';
-import { BillComponent } from './components/menu/bill/bill.component';
-import { ClientEditComponent } from './components/menu/client/client-edit/client-edit.component';
-import { ClientQueryComponent } from './components/menu/client/client-query/client-query.component';
-import { ClientComponent } from './components/menu/client/client.component';
-import { ProductCategoryEditComponent } from './components/menu/product-category/product-category-edit/product-category-edit.component';
-import { ProductCategoryQueryComponent } from './components/menu/product-category/product-category-query/product-category-query.component';
-import { ProductCategoryComponent } from './components/menu/product-category/product-category.component';
-import { ProductEditComponent } from './components/menu/product/product-edit/product-edit.component';
-import { ProductQueryComponent } from './components/menu/product/product-query/product-query.component';
-import { ProductComponent } from './components/menu/product/product.component';
-import { ProviderEditComponent } from './components/menu/provider/provider-edit/provider-edit.component';
-import { ProviderQueryComponent } from './components/menu/provider/provider-query/provider-query.component';
-import { ProviderComponent } from './components/menu/provider/provider.component';
 import { FooterComponent } from './components/template/footer/footer.component';
 import { HeaderComponent } from './components/template/header/header.component';
 import { SidebarComponent } from './components/template/sidebar/sidebar.component';
+import { HomeComponent } from './components/home/home.component';
+import { BillComponent } from './components/menu/bill/bill.component';
+import { BillQueryComponent } from './components/menu/bill/bill-query/bill-query.component';
+import { BillEditComponent } from './components/menu/bill/bill-edit/bill-edit.component';
+import { ClientComponent } from './components/menu/client/client.component';
+import { ClientQueryComponent } from './components/menu/client/client-query/client-query.component';
+import { ClientEditComponent } from './components/menu/client/client-edit/client-edit.component';
+import { CompanyComponent } from './components/menu/company/company.component';
+import { ProductCategoryComponent } from './components/menu/product-category/product-category.component';
+import { ProductCategoryQueryComponent } from './components/menu/product-category/product-category-query/product-category-query.component';
+import { ProductCategoryEditComponent } from './components/menu/product-category/product-category-edit/product-category-edit.component';
+import { ProductComponent } from './components/menu/product/product.component';
+import { ProductQueryComponent } from './components/menu/product/product-query/product-query.component';
+import { ProductEditComponent } from './components/menu/product/product-edit/product-edit.component';
+import { ProviderComponent } from './components/menu/provider/provider.component';
+import { ProviderQueryComponent } from './components/menu/provider/provider-query/provider-query.component';
+import { ProviderEditComponent } from './components/menu/provider/provider-edit/provider-edit.component';
 
 // Constants
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -90,25 +92,28 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 @NgModule({
   declarations: [
     AppComponent,
+    // Templates
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
+    // Components
     HomeComponent,
     BillComponent,
-    ProviderComponent,
-    ProductComponent,
-    ProductCategoryComponent,
-    ClientComponent,
     BillQueryComponent,
     BillEditComponent,
-    ProviderQueryComponent,
-    ProviderEditComponent,
+    ClientComponent,
     ClientQueryComponent,
     ClientEditComponent,
+    CompanyComponent,
+    ProductComponent,
     ProductQueryComponent,
     ProductEditComponent,
+    ProductCategoryComponent,
     ProductCategoryQueryComponent,
-    ProductCategoryEditComponent
+    ProductCategoryEditComponent,
+    ProviderComponent,
+    ProviderQueryComponent,
+    ProviderEditComponent
   ],
   imports: [
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
@@ -125,6 +130,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     RouterModule,
     NgxJsonViewerModule,
     CardModule,
+    DropdownModule,
     TimelineModule,
     TooltipModule,
     TagModule,

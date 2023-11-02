@@ -178,8 +178,8 @@ export class ObjectModelInitializer {
       taxes: [],
       bill_type: "",
       payment_method: "E",
-      bill_date: new Date(),
-      expiry_date: new Date(),
+      bill_date: null,
+      expiry_date: null,
       company: this.initializerCompanyBillModel(),
       provider: this.initializerProviderBillModel(),
       client: this.initializerClientBillModel(),
@@ -187,9 +187,9 @@ export class ObjectModelInitializer {
       // Auditoria
       create_user: "",
       update_user: "",
-      create_date: new Date(),
-      update_date: new Date(),
-      _class: ""
+      create_date: null,
+      update_date: null,
+      _class: null
     }
   };
 
@@ -200,15 +200,15 @@ export class ObjectModelInitializer {
       code: "",
       name: "",
       description: "",
-      color: "",
+      color: "#30b3ed",
       image: "",
 
       // Auditoria
       create_user: "",
       update_user: "",
-      create_date: new Date(),
-      update_date: new Date(),
-      _class: ""
+      create_date: null,
+      update_date: null,
+      _class: null
     }
   };
 
@@ -219,15 +219,15 @@ export class ObjectModelInitializer {
       name: "",
       info: this.initializerContactProviderModel(),
       document_number: "",
-      document_type: "",
+      document_type: "CEDULA",
       image: "",
 
       // Auditoria
       create_user: "",
       update_user: "",
-      create_date: new Date(),
-      update_date: new Date(),
-      _class: ""
+      create_date: null,
+      update_date: null,
+      _class: null
     }
   };
 
@@ -245,7 +245,7 @@ export class ObjectModelInitializer {
     return {
       _id: null,
       name: "",
-      info: this.initializerContactClientModel(),
+      info: this.initializerContactModel(),
       document_number: "",
       document_type: "CEDULA",
       image: "",
@@ -253,13 +253,14 @@ export class ObjectModelInitializer {
       // Auditoria
       create_user: "",
       update_user: "",
-      create_date: new Date(),
-      update_date: new Date(),
-      _class: ""
+      create_date: null,
+      update_date: null,
+      _class: null
     }
   };
 
-  initializerContactClientModel() {
+  // Contact
+  initializerContactModel() {
     return {
       telephone: "",
       email: "",
@@ -268,7 +269,7 @@ export class ObjectModelInitializer {
     }
   };
 
-  // Client Model
+  // Product Model
   initializerProductModel() {
     return {
       _id: null,
@@ -285,9 +286,10 @@ export class ObjectModelInitializer {
       // Auditoria
       create_user: "",
       update_user: "",
-      create_date: new Date(),
-      update_date: new Date(),
-      _class: ""
+      create_date: null,
+      update_date: null,
+      _class: null
     }
   };
+
 }

@@ -13,5 +13,5 @@ export interface CompanyModel {
     update_user: string;
     create_date: any;
     update_date: any;
-    _class: string;
+    _class: any;
 }

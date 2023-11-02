@@ -43,6 +43,8 @@ export class ProductCategoryEditComponent implements OnInit {
 
   save() {
     try {
+      console.log(environment.urlProductCategories);
+      console.log(this.productCategory);
       this.rest.postREST(environment.urlProductCategories, this.productCategory).subscribe({
         next: (res: any) => {
           console.log(res);

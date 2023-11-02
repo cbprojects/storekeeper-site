@@ -4,8 +4,8 @@
 :root {
   --text-color: rgba(12, 5, 5, 0.87);
   --text-color-secondary: textSecondaryColor;
-  --app-color: #FF5858;
-  --app-color-text: #FF5858;
+  --app-color: #30b3ed;
+  --app-color-text: #30b3ed;
 }
 
 .display-flex {
@@ -89,4 +89,27 @@
 
 .font-bold{
     font-weight: bold;
+}
+
+.p-dropdown {
+    display: inline-flex;
+    cursor: pointer;
+    position: relative;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 100%;
+    height: 40px;
+    line-height: 25px;
+}
+
+.p-dropdown-label {
+    font-size: 14px;
+}
+
+.p-dialog-content {
+    overflow-y: inherit !important;
+}
+
+.w10p{
+    width: 10%;
 }

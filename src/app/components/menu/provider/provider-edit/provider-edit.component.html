@@ -1,21 +1,28 @@
 <div *ngIf="provider" class="card">
     <div class="content">
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-2">
+            <div class="col-xs-12 col-sm-6 col-md-2">
                 <div class="form-group">
                     <label>{{msg.lbl_forms_id}}</label>
                     <input type="text" class="form-control border-input" disabled placeholder="{{msg.lbl_forms_id}}"
                         [(ngModel)]="provider._id">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="col-xs-12 col-sm-6 col-md-4">
                 <div class="form-group">
                     <label>{{msg.lbl_forms_name}}</label>
                     <input type="text" class="form-control border-input" placeholder="{{msg.lbl_forms_name}}"
                         [(ngModel)]="provider.name">
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_document_type}}</label>
+                    <p-dropdown [options]="documentTypes" [(ngModel)]="provider.document_type"
+                        optionLabel="label"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
                 <div class="form-group">
                     <label>{{msg.lbl_forms_document_number}}</label>
                     <input type="text" class="form-control border-input" placeholder="{{msg.lbl_forms_document_number}}"

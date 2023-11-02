@@ -26,11 +26,12 @@
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 text-center">
         <div class="m-3 pt-1">
             <p-button class="w100" label="{{msg.lbl_btn_crear}}" (click)="toCreate()"
-                styleClass="p-button-outlined p-button-danger" icon="pi pi-plus"></p-button>
+                styleClass="p-button-outlined p-button-info" icon="pi pi-plus"></p-button>
         </div>
+
         <p-dialog header="{{title}} - {{msg.lbl_menu_gestion}}" [(visible)]="showPnlEdit" [modal]="true"
             [style]="{ width: '50vw' }" [draggable]="false" (onHide)="find()" [resizable]="false">
-            <app-client-edit [client]="selectedClient" (saveEvent)="save($event)"></app-client-edit>
+            <app-client-edit [client]="selectedClient" [phase]="selectedPhase" (saveEvent)="save($event)"></app-client-edit>
         </p-dialog>
     </div>
 </div>
@@ -48,12 +49,14 @@
                 <tr>
                     <th scope="col" class="text-center">Nombre</th>
                     <th scope="col" class="text-center">Identificación</th>
+                    <th scope="col" class="text-center w10p"></th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-element>
                 <tr>
                     <td>{{element.name}}</td>
-                    <td>{{element.document_number}}</td>
+                    <td>{{util.getEmunName(documentTypes, element.document_type)}} - {{element.document_number}}</td>
+                    <td class="text-center"><p-button icon="pi pi-pencil" (click)="toEdit(element)"></p-button></td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="summary">

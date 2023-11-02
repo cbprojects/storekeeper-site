@@ -69,6 +69,19 @@ export class RestService {
     });
   }
 
+  postAuth2FormEncodedREST(url: string, usuario: string, clave: string) {
+    const clientId = "gtw-admin-client";
+    const clientSecret = "cCulW5UpJ7HvtZGcqJsrTObOxHQkjuCE";
+    const scope = "email roles profile";
+    const grantType = "password";
+    const bodyData = `client_id=${clientId}&client_secret=${clientSecret}&grant_type=${grantType}&scope=${scope}`;
+    const body = `${bodyData}&username=${encodeURIComponent(usuario)}&password=${encodeURIComponent(clave)}`;
+
+    return this.http.post(url, body, {
+      headers: new HttpHeaders().set('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8')
+    });
+  }
+
   getSecureREST(url: string, token: string) {
     return this.http.get(url, {
       headers: new HttpHeaders().set('Authorization', 'bearer ' + token).set('Content-Type', 'application/json')
@@ -86,7 +99,7 @@ export class RestService {
     formData.append("file", data);
 
     return this.http.post(url, formData, {
-      headers: new HttpHeaders().set('Authorization', 'bearer ' + token)
+      headers: new HttpHeaders().set('Authorization', `bearer ${token}`)
     });
   }
   // END SERVICES WITH SECURITY

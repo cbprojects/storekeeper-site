@@ -37,10 +37,10 @@ export class SidebarComponent implements OnInit {
   loadMenu() {
     this.menu = [];
     this.menu.push(this.createItemMenu("Dashboard", "ti-panel", "/home"));
-    this.menu.push(this.createItemMenu("Categorías", "ti-tag", "/categories"));
-    this.menu.push(this.createItemMenu("Proveedores", "ti-briefcase", "/providers"));
-    this.menu.push(this.createItemMenu("Inventario", "ti-package", "/products"));
     this.menu.push(this.createItemMenu("Clientes", "ti-id-badge", "/clients"));
+    this.menu.push(this.createItemMenu("Proveedores", "ti-briefcase", "/providers"));
+    this.menu.push(this.createItemMenu("Categorías", "ti-tag", "/categories"));
+    this.menu.push(this.createItemMenu("Inventario", "ti-package", "/products"));
     this.menu.push(this.createItemMenu("Facturación", "ti-money", "/bills"));
 
     let menuActive = localStorage.getItem('menu-active');
