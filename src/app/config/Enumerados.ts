@@ -15,106 +15,71 @@ export class Enumerados {
     return {
       sino: {
         cod: 1, valores: [
-          { value: 1, label: properties.lbl_enum_si },
-          { value: 0, label: properties.lbl_enum_no }
-        ]
-      },
-      sexo: {
-        cod: 2, valores: [
-          { value: 1, label: properties.lbl_enum_sexo_valor_masculino },
-          { value: 2, label: properties.lbl_enum_sexo_valor_femenino },
-          { value: 3, label: properties.lbl_enum_sexo_valor_ambos }
-        ]
-      },
-      tipoUsuario: {
-        cod: 3, valores: [
-          { value: 0, label: properties.lbl_enum_generico_valor_vacio },
-          { value: 1, label: properties.lbl_enum_tipo_usuario_valor_cliente },
-          { value: 2, label: properties.lbl_enum_tipo_usuario_valor_empleado },
-          { value: 3, label: properties.lbl_enum_tipo_usuario_valor_administrador }
+          { value: "SI", label: properties.lbl_enum_si },
+          { value: "NO", label: properties.lbl_enum_no }
         ]
       },
       tipoDocumento: {
-        cod: 4, valores: [
-          { value: "0", label: properties.lbl_enum_generico_valor_vacio },
+        cod: 2, valores: [
+          { value: "-1", label: properties.lbl_enum_generico_valor_vacio },
           { value: "CEDULA", label: properties.lbl_enum_tipo_documento_valor_cc },
-          { value: "PASAPORTE", label: properties.lbl_enum_tipo_documento_valor_pa },
           { value: "CEDULA_EXTRANJERIA", label: properties.lbl_enum_tipo_documento_valor_ce },
-          { value: "NIT", label: properties.lbl_enum_tipo_documento_valor_ni }
-        ]
-      },
-      tipoUbicacion: {
-        cod: 5, valores: [
-          { value: -1, label: properties.lbl_enum_generico_valor_vacio },
-          { value: 0, label: properties.lbl_enum_tipo_ubicacion_valor_pais },
-          { value: 1, label: properties.lbl_enum_tipo_ubicacion_valor_departamento },
-          { value: 2, label: properties.lbl_enum_tipo_ubicacion_valor_ciudad }
-        ]
-      },
-      procesoContacto: {
-        cod: 6, valores: [
-          { value: 0, label: properties.lbl_enum_proceso_contacto_valor_seleccione },
-          { value: 1, label: properties.lbl_enum_proceso_contacto_valor_prospecto },
-          { value: 2, label: properties.lbl_enum_proceso_contacto_valor_contacto },
-          { value: 3, label: properties.lbl_enum_proceso_contacto_valor_cliente },
-          { value: 4, label: properties.lbl_enum_proceso_contacto_valor_cliente_perdido },
-          { value: 5, label: properties.lbl_enum_proceso_contacto_valor_potencial_perdida },
-          { value: 6, label: properties.lbl_enum_proceso_contacto_valor_cambio_info }
+          { value: "NIT", label: properties.lbl_enum_tipo_documento_valor_ni },
+          { value: "PASAPORTE", label: properties.lbl_enum_tipo_documento_valor_pa }
         ]
       },
       tipoFactura: {
-        cod: 7, valores: [
-          { value: 0, label: properties.lbl_enum_tipo_factura_valor_seleccione },
-          { value: 1, label: properties.lbl_enum_tipo_factura_cotizacion },
-          { value: 2, label: properties.lbl_enum_tipo_factura_factura }
+        cod: 3, valores: [
+          { value: "-1", label: properties.lbl_enum_generico_valor_vacio },
+          { value: "AJUSTE", label: properties.lbl_enum_tipo_factura_ajuste },
+          { value: "ANULACION", label: properties.lbl_enum_tipo_factura_anulacion },
+          { value: "COMPRA", label: properties.lbl_enum_tipo_factura_compra },
+          { value: "COSTO", label: properties.lbl_enum_tipo_factura_costo },
+          { value: "COTIZACION", label: properties.lbl_enum_tipo_factura_cotizacion },
+          { value: "GASTO", label: properties.lbl_enum_tipo_factura_gasto },
+          { value: "INGRESO", label: properties.lbl_enum_tipo_factura_ingreso },
+          { value: "VENTA", label: properties.lbl_enum_tipo_factura_venta }
         ]
       },
-      tipoConcepto: {
-        cod: 8, valores: [
-          { value: 0, label: properties.lbl_enum_tipo_concepto_valor_seleccione },
-          { value: 1, label: properties.lbl_enum_tipo_concepto_mano_obra },
-          { value: 2, label: properties.lbl_enum_tipo_concepto_material }
+      estadoFactura: {
+        cod: 4, valores: [
+          { value: "-1", label: properties.lbl_enum_generico_valor_vacio },
+          { value: "ANULADA", label: properties.lbl_enum_estado_factura_anulada },
+          { value: "CANCELADA", label: properties.lbl_enum_estado_factura_cancelada },
+          { value: "ERROR", label: properties.lbl_enum_estado_factura_error },
+          { value: "PAGADA", label: properties.lbl_enum_estado_factura_pagada },
+          { value: "PENDIENTE", label: properties.lbl_enum_estado_factura_pendiente },
+          { value: "VENCIDA", label: properties.lbl_enum_estado_factura_vencida }
+        ]
+      },
+      tipoProducto: {
+        cod: 5, valores: [
+          { value: "-1", label: properties.lbl_enum_generico_valor_vacio },
+          { value: "ARTICULO", label: properties.lbl_enum_tipo_producto_articulo },
+          { value: "SERVICIO", label: properties.lbl_enum_tipo_producto_servicio }
         ]
       },
       unidad: {
-        cod: 9, valores: [
-          { value: 0, label: properties.lbl_enum_tipo_unidad_valor_seleccione },
-          { value: 1, label: properties.lbl_enum_tipo_unidad_valor_metro },
-          { value: 2, label: properties.lbl_enum_tipo_unidad_valor_metro_cuadrado },
-          { value: 1, label: properties.lbl_enum_tipo_unidad_valor_litro },
-          { value: 2, label: properties.lbl_enum_tipo_unidad_valor_hora }
+        cod: 6, valores: [
+          { value: "-1", label: properties.lbl_enum_generico_valor_vacio },
+          { value: "BULTO", label: properties.lbl_enum_tipo_unidad_valor_bulto },
+          { value: "CANECA", label: properties.lbl_enum_tipo_unidad_valor_caneca },
+          { value: "FRASCO", label: properties.lbl_enum_tipo_unidad_valor_frasco },
+          { value: "GALON", label: properties.lbl_enum_tipo_unidad_valor_galon },
+          { value: "GRAMO", label: properties.lbl_enum_tipo_unidad_valor_gramo },
+          { value: "HORA", label: properties.lbl_enum_tipo_unidad_valor_hora },
+          { value: "LITRO", label: properties.lbl_enum_tipo_unidad_valor_litro },
+          { value: "METRO", label: properties.lbl_enum_tipo_unidad_valor_metro },
+          { value: "METRO_CUADRADO", label: properties.lbl_enum_tipo_unidad_valor_metro_cuadrado },
+          { value: "UNIDAD", label: properties.lbl_enum_tipo_unidad_valor_unidad }
         ]
       },
-      nivelSeguimiento: {
-        cod: 10, valores: [
-          { value: 0, label: properties.lbl_enum_nivel_seguimiento_valor_seleccione },
-          { value: 1, label: properties.lbl_enum_nivel_seguimiento_creado },
-          { value: 2, label: properties.lbl_enum_nivel_seguimiento_recordatorio },
-          { value: 3, label: properties.lbl_enum_nivel_seguimiento_realizado },
-          { value: 4, label: properties.lbl_enum_nivel_seguimiento_pendiente }
-        ]
-      },
-      industria: {
-        cod: 11, valores: [
-          { value: 0, label: properties.lbl_enum_industria_valor_seleccione },
-          { value: 1, label: properties.lbl_enum_industria_alimenticia },
-          { value: 2, label: properties.lbl_enum_industria_farmaceutica },
-          { value: 3, label: properties.lbl_enum_industria_automotriz },
-          { value: 4, label: properties.lbl_enum_industria_construccion },
-          { value: 5, label: properties.lbl_enum_industria_general },
-          { value: 6, label: properties.lbl_enum_industria_metalurgica },
-          { value: 7, label: properties.lbl_enum_industria_quimica },
-          { value: 8, label: properties.lbl_enum_industria_textil },
-          { value: 9, label: properties.lbl_enum_industria_comercial_hotel },
-          { value: 10, label: properties.lbl_enum_industria_plastico },
-          { value: 11, label: properties.lbl_enum_industria_petroquimica },
-          { value: 12, label: properties.lbl_enum_industria_electrica },
-          { value: 13, label: properties.lbl_enum_industria_gas },
-          { value: 14, label: properties.lbl_enum_industria_maderas },
-          { value: 15, label: properties.lbl_enum_industria_cosmetica },
-          { value: 16, label: properties.lbl_enum_industria_centro_oncologico },
-          { value: 17, label: properties.lbl_enum_industria_hospital },
-          { value: 18, label: properties.lbl_enum_industria_minera }
+      metodoPago: {
+        cod: 5, valores: [
+          { value: "-1", label: properties.lbl_enum_generico_valor_vacio },
+          { value: "EFECTIVO", label: properties.lbl_enum_metodo_pago_efectivo },
+          { value: "TARJETA_DEBITO", label: properties.lbl_enum_metodo_pago_tarjeta_debito },
+          { value: "TARJETA_CREDITO", label: properties.lbl_enum_metodo_pago_tarjeta_credito }
         ]
       },
       //valorIva: {cod: 25},

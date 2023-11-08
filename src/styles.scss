@@ -31,6 +31,10 @@
     }
 }
 
+.p-buttonset{
+    display: flex;
+}
+
 .icon-section {
 	margin: 0 0 3em;
 	clear: both;
@@ -112,4 +116,16 @@
 
 .w10p{
     width: 10%;
+}
+
+.w30p{
+    width: 30%;
+}
+
+.w50p{
+    width: 50%;
+}
+
+.text-right .p-inputnumber .p-inputnumber-input {
+    text-align: right !important;
 }

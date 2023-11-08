@@ -19,7 +19,7 @@
                 <div class="form-group">
                     <label>{{msg.lbl_forms_document_type}}</label>
                     <p-dropdown [options]="documentTypes" [(ngModel)]="provider.document_type"
-                        optionLabel="label"></p-dropdown>
+                        [filter]="true" filterBy="label" [showClear]="false" optionLabel="label"></p-dropdown>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">

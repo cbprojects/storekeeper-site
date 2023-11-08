@@ -9,18 +9,22 @@ export const environment = {
   urlRestService: `${HOST}/`,
   urlRestOauth: `${HOST}/oauth/token`,
   urlVCode: `${SYSTEM}/vCode/`,
-  // Products Categories
-  urlProductCategories: `${HOST}/product_category/v1/`,
-  // Products
-  urlProducts: `${HOST}/product/v1/`,
-  // Providers
-  urlProviders: `${HOST}/provider/v1/`,
-  // Companies
-  urlCompanies: `${HOST}/company/v1/`,
-  // Clients
-  urlClients: `${HOST}/client/v1/`,
+  // Assignments
+  urlAssignments: `${HOST}/assignment/v1/`,
   // Bills
   urlBills: `${HOST}/bill/v1/`,
+  // Clients
+  urlClients: `${HOST}/client/v1/`,
+  // Companies
+  urlCompanies: `${HOST}/company/v1/`,
+  // Employees
+  urlEmployees: `${HOST}/employee/v1/`,
+  // Products
+  urlProducts: `${HOST}/product/v1/`,
+  // Products Categories
+  urlProductCategories: `${HOST}/product_category/v1/`,
+  // Providers
+  urlProviders: `${HOST}/provider/v1/`,
   // Params
   tokenRecordarClave: '3vkd3ugAOnnXZGfUER8',
   correoRemitente: 'XXX@gmail.com',

@@ -2,7 +2,7 @@ import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { fadeIn } from 'ng-animate';
-import { MessageService } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { ObjectModelInitializer } from 'src/app/config/ObjectModelInitializer';
 import { TextProperties } from 'src/app/config/TextProperties';
 import { Util } from 'src/app/config/Util';
@@ -26,6 +26,8 @@ export class HeaderComponent implements OnInit {
 
   // Objetos de datos
   usuario: string = "";
+  items: MenuItem[] = [];
+  home: MenuItem = {};
 
   // Utilidades
   msg: any;
@@ -36,6 +38,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.sesionService.loadUser();
+    this.items = [{ label: 'Computer' }, { label: 'Notebook' }, { label: 'Accessories' }, { label: 'Backpacks' }, { label: 'Item' }];
+    this.home = { icon: 'pi pi-home', routerLink: '/' };
   }
 
   obtenerBreadcrumb(url: string) {

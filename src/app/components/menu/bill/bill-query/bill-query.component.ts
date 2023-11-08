@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { Enumerados } from 'src/app/config/Enumerados';
 import { ObjectModelInitializer } from 'src/app/config/ObjectModelInitializer';
 import { TextProperties } from 'src/app/config/TextProperties';
 import { Util } from 'src/app/config/Util';
 import { BillModel } from 'src/app/model/bill/bill-model';
+import { EnumItemModel } from 'src/app/model/shared/enum-item-model';
 import { RestService } from 'src/app/services/rest.service';
 import { environment } from 'src/environments/environment';
 
@@ -20,15 +22,33 @@ export class BillQueryComponent implements OnInit {
   showPnlEdit: boolean = false;
   filter: BillModel | undefined;
   selectedBill: BillModel | undefined;
+  selectedPhase: string | undefined;
+  billTypes: any = [];
+  paymentMethods: any = [];
+  billStatuses: any = [];
 
   // Common
   msg: any;
 
-  constructor(private textProperties: TextProperties, private rest: RestService, private util: Util, private omi: ObjectModelInitializer, private messageService: MessageService) {
+  constructor(private textProperties: TextProperties, private rest: RestService, private enums: Enumerados, private util: Util, private omi: ObjectModelInitializer, private messageService: MessageService) {
     this.msg = textProperties.getProperties(environment.idiomaEs);
   }
 
   ngOnInit(): void {
+    this.inicializar();
+  }
+
+  inicializar() {
+    this.selectedPhase = environment.phaseCreate;
+    localStorage.setItem("phase", environment.phaseCreate);
+    this.billTypes = this.enums.getEnumerados().tipoFactura.valores;
+    this.paymentMethods = this.enums.getEnumerados().metodoPago.valores;
+    this.billStatuses = this.enums.getEnumerados().estadoFactura.valores;
+    // TODO: Falta cargar estos datos
+    // let billProvider: any = this.bill.provider;
+    // let billClient: any = this.bill.client;
+    // this.bill.company = this.omi.initializerCompanyBillModel();
+
     this.filter = this.omi.initializerBillModel();
     this.find();
   }
@@ -36,6 +56,19 @@ export class BillQueryComponent implements OnInit {
   toCreate() {
     this.messageService.clear();
     this.selectedBill = this.omi.initializerBillModel();
+    this.selectedPhase = environment.phaseCreate;
+    localStorage.setItem("phase", environment.phaseCreate);
+    this.showPnlEdit = true;
+  }
+
+  toEdit(bill: BillModel) {
+    this.messageService.clear();
+    this.selectedBill = bill;
+    this.selectedBill.bill_type = this.billTypes.find((el: EnumItemModel) => el.value === bill.bill_type);
+    this.selectedBill.payment_method = this.paymentMethods.find((el: EnumItemModel) => el.value === bill.payment_method);
+    this.selectedBill.status = this.billStatuses.find((el: EnumItemModel) => el.value === bill.status);
+    this.selectedPhase = environment.phaseEdit;
+    localStorage.setItem("phase", environment.phaseEdit);
     this.showPnlEdit = true;
   }
 
@@ -59,4 +92,51 @@ export class BillQueryComponent implements OnInit {
     this.find();
     this.showPnlEdit = false;
   }
+
+  deleteRow(id: string) {
+    this.messageService.clear();
+    try {
+      this.rest.deleteREST(environment.urlBills, id).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          this.find();
+          this.util.showMessage(this.msg.lbl_summary_success, this.msg.lbl_detail_el_registro_eliminado, environment.severity[1]);
+        },
+        error: (e) => this.util.showErrorMessage(e, this.msg.lbl_summary_warning, environment.severity[2])
+      });
+    } catch (error) {
+      console.log(error);
+      this.util.showErrorMessage(error, this.msg.lbl_summary_danger, environment.severity[3])
+    }
+  }
+
+  getSeverity(status: string) {
+    let severity = "primary";
+    switch (status) {
+      case "ANULADA":
+        severity = "info";
+        break;
+      case "CANCELADA":
+        severity = "danger";
+        break;
+      case "ERROR":
+        severity = "danger";
+        break;
+      case "PAGADA":
+        severity = "success";
+        break;
+      case "PENDIENTE":
+        severity = "warning";
+        break;
+      case "VENCIDA":
+        severity = "info";
+        break;
+
+      default:
+        break;
+    }
+
+    return severity;
+  }
+
 }

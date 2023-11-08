@@ -7,5 +7,5 @@ export interface ConceptModel {
     product_type: string;
     quantity: number;
     amount: number;
-    total_amount: 0
+    total_amount: number;
 }

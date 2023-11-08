@@ -3,64 +3,124 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 text-left">
+                    <div class="col-xs-12 col-sm-12 col-md-12 text-right">
+                        <div class="font-bold">{{bill._id ? bill.bill_date : util.getNewDate()}}</div>
+                    </div>
+                </div>
+                <div class="row bill-bg-header">
+                    <div class="col-xs-12 col-sm-12 col-md-3 text-left">
                         <img alt="bill-logo" class="bill-logo" src="/assets/img/logo.png" />
                     </div>
-                </div>
-
-                <br />
-
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 text-left">
-                        <div class="font-bold">Proveedor:</div>
-                        {{bill.provider.name}}<br>
-                        {{bill.provider.document_number}}<br>
+                    <div class="col-xs-12 col-sm-12 col-md-3 text-left">
+                        <h4><span class="font-bold">Factura # </span>{{bill.bill_id}}</h4>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 text-right">
-                        <div class="font-bold">Cliente:</div>
-                        {{bill.client.name}}<br>
-                        {{bill.client.document_number}}<br>
+                    <div class="col-xs-12 col-sm-6 col-md-3 text-right pt-2">
+                        <div class="font-bold">{{msg.lbl_forms_bill_type}}</div>
+                        <p-dropdown [options]="billTypes" [(ngModel)]="bill.bill_type"
+                            [filter]="true" filterBy="label" [showClear]="false" optionLabel="label"></p-dropdown>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3 text-right pt-2">
+                        <div class="font-bold">{{msg.lbl_forms_bill_status}}</div>
+                        <p-dropdown [options]="billStatuses" [(ngModel)]="bill.status"
+                            [filter]="true" filterBy="label" [showClear]="false" optionLabel="label"></p-dropdown>
                     </div>
                 </div>
-
-                <br />
-
+                
+                <hr />
+                
                 <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-6 text-left">
-                        <div class="font-bold">Método de Pago:</div>
-                        {{bill.payment_method}}<br>
+                    <div class="col-xs-12 col-sm-12 col-md-4 text-left">
+                        <div class="font-bold">{{msg.lbl_forms_a_nombre_de}}</div>
+                        <p-dropdown [options]="companies" [(ngModel)]="bill.company"
+                            [filter]="true" filterBy="label" [showClear]="false" optionLabel="label"></p-dropdown>
                     </div>
-                    <div class="col-xs-12 col-sm-12 col-md-6 text-right">
-                        <div class="font-bold">Fecha:</div>
-                        Marzo 7, 2023<br><br>
+                    <div class="col-xs-12 col-sm-12 col-md-4 text-left">
+                        <div class="font-bold">{{msg.lbl_forms_provider}}</div>
+                        <p-dropdown [options]="providers" [(ngModel)]="bill.provider"
+                            [filter]="true" filterBy="label" [showClear]="false" optionLabel="label"></p-dropdown>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 text-right">
+                        <div class="font-bold">{{msg.lbl_forms_client}}</div>
+                        <p-dropdown [options]="clients" [(ngModel)]="bill.client"
+                            [filter]="true" filterBy="label" [showClear]="false" optionLabel="label"></p-dropdown>
                     </div>
                 </div>
             </div>
         </div>
 
-        <br />
+        <hr />
 
         <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <!-- ITEMS -->
+            <div *ngIf="!showBilling" class="col-xs-12 col-sm-12 col-md-12">
+                <p-pickList [source]="products" [target]="targetProducts" sourceHeader="Disponibles en bodega" targetHeader="Seleccionados" [dragdrop]="true" [responsive]="true" [sourceStyle]="{ height: '30rem' }"
+                    [targetStyle]="{ height: '30rem' }" filterBy="name" sourceFilterPlaceholder="Buscar por nombre" targetFilterPlaceholder="Buscar por nombre" breakpoint="1400px">
+                    <ng-template let-product pTemplate="item">
+                        <div class="flex flex-wrap p-2 align-items-center gap-3">
+                            <img class="w-4rem shadow-2 flex-shrink-0 border-round" src="{{product.image ? product.image : 'assets/img/template/sidebar.jpg'}}" alt="{item.name}" />
+                            <div class="flex-1 flex flex-column gap-2">                                
+                                <span class="font-bold">
+                                    <i class="pi pi-tags text-xl"></i>
+                                    {{ product.name }}
+                                </span>
+                                <div class="flex align-products-center gap-2">                                    
+                                    <div class="font-bold text-{{product.stock === 0 ? 'danger' : (product.stock < 5 ? 'warning' : 'success')}}">
+                                        <i class="pi pi-{{product.stock === 0 ? 'times' : (product.stock < 5 ? 'exclamation' : 'check')}}-circle text-xl"></i>
+                                        (Stock: {{ product.stock }})
+                                    </div>
+                                </div>
+                                <div class="flex align-products-center gap-2">
+                                    <div><span class="font-bold">{{msg.lbl_forms_category}}:</span> {{ product.category.name }}</div>
+                                </div>
+                                <div class="flex align-products-center gap-2">
+                                    <div><span class="font-bold">{{msg.lbl_forms_type}}:</span> {{ product.type }}</div>
+                                </div>
+                                <div class="flex align-products-center gap-2">
+                                    <div class="text-justify">{{ product.description }}</div>
+                                </div>
+                            </div>
+                            <span class="font-bold text-900">{{product.sale_price | currency:'USD'}}</span>
+                        </div>
+                    </ng-template>
+                </p-pickList>
+
+                <hr />
+
+                <div class="row flex justify-content-center">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
+                        <div class="m-3 pt-1">
+                            <p-button [disabled]="targetProducts.length <= 0" (click)="seeBill()" class="w100"
+                                label="Ver Factura" icon="pi pi-dollar"></p-button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        
+            <!-- BILL -->
+            <div *ngIf="showBilling" class="col-xs-12 col-sm-12 col-md-12">
                 <p-table [value]="bill.concepts" responsiveLayout="stack" [tableStyle]="{'min-width': '80rem'}">
                     <ng-template pTemplate="header">
                         <tr>
-                            <th scope="col" class="text-center">#</th>
-                            <th scope="col" class="text-center">Concepto</th>
-                            <th scope="col" class="text-center">Descripción</th>
-                            <th scope="col" class="text-center">Cantidad</th>
-                            <th scope="col" class="text-center">Valor Unitario</th>
-                            <th scope="col" class="text-center">Valor Total</th>
+                            <th scope="col" class="text-center w50p">Concepto</th>
+                            <th scope="col" class="text-center w30p">Cantidad</th>
+                            <th scope="col" class="text-center w10p">Valor Unitario</th>
+                            <th scope="col" class="text-center w10p">Valor Total</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-concept>
                         <tr>
-                            <td><span class="font-bold">{{concept.code}}: </span>{{concept.concept}}</td>
-                            <td>{{concept.description}}</td>
-                            <td>{{concept.quantity}}</td>
-                            <td>{{concept.amount | currency:'USD'}}</td>
-                            <td>{{concept.total_amount | currency:'USD'}}</td>
-                            <td><p-tag [value]="concept.inventoryStatus" [severity]="'warning'"></p-tag></td>
+                            <td>
+                                <span class="font-bold">{{concept.code}}-{{concept.concept}}:</span> {{concept.description}}
+                            <td class="text-center">
+                                <p-inputNumber (onInput)="calculateBill()" (onFocus)="calculateBill()" (onBlur)="calculateBill()"
+                                    [(ngModel)]="concept.quantity" [showButtons]="true" buttonLayout="horizontal" 
+                                    inputId="horizontal" spinnerMode="horizontal" [step]="1" decrementButtonClass="p-button-danger"
+                                    incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus"
+                                    decrementButtonIcon="pi pi-minus" [min]="0" [max]="1000"></p-inputNumber>
+                            </td>
+                            <td class="text-right">{{concept.amount | currency:'USD'}}</td>
+                            <td class="text-right">{{concept.total_amount | currency:'USD'}}</td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="summary">
@@ -69,6 +129,61 @@
                         </div>
                     </ng-template>
                 </p-table>
+
+                <hr />
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-3 text-left">
+                        <div class="font-bold">{{msg.lbl_forms_payment_method}}</div>
+                        <p-selectButton [options]="paymentOptions" [(ngModel)]="selectedPayment" optionLabel="icon">
+                            <ng-template let-item pTemplate>
+                                <div class="w100">
+                                    <i [class]="item.icon"></i>
+                                    <div class="row">{{item.name}}</div>
+                                </div>
+                            </ng-template>
+                        </p-selectButton>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-9 text-right">
+                        <div class="font-bold">Total Factura</div>
+                        <p-inputNumber [disabled]="true" [(ngModel)]="billTotal" class="text-right"                            
+                            locale="en-US" mode="currency" currency="USD"></p-inputNumber>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row flex justify-content-center">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 text-center">
+                        <div class="m-3 pt-1">
+                            <p-button (click)="showBilling=false" class="w100"
+                                label="Ver Productos" icon="pi pi-box"></p-button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 text-center">
+                        <div class="m-3 pt-1">
+                            <p-button class="w100" label="{{msg.lbl_btn_crear}}" (click)="save()"
+                                styleClass="p-button-outlined p-button-info" icon="pi pi-plus"></p-button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 text-center">
+                        <div class="m-3 pt-1">
+                            <p-button class="w100" label="{{msg.lbl_btn_imprimir}}" (click)="print()"
+                                styleClass="p-button-outlined p-button-info" icon="pi pi-print"></p-button>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <p-messages></p-messages>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

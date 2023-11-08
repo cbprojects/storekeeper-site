@@ -24,6 +24,84 @@
             </div>
         </div>
 
+        
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_type}}</label>
+                    <p-dropdown [options]="productTypes" [(ngModel)]="product.type"
+                        [filter]="true" filterBy="label" [showClear]="false" optionLabel="label"></p-dropdown>
+                </div>
+            </div>                                    
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_unit}}</label>
+                    <p-dropdown [options]="unitTypes" [(ngModel)]="product.unit"
+                        [filter]="true" filterBy="label" [showClear]="false" optionLabel="label"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_category}}</label>
+                    <p-dropdown [options]="categories" [(ngModel)]="product.category"
+                        [filter]="true" filterBy="label" [showClear]="false" optionLabel="label"></p-dropdown>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_stock}}</label>
+                    <div class="row">
+                        <p-inputNumber [(ngModel)]="product.stock" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1"
+                            decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [min]="0" [max]="1000"></p-inputNumber>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_stock_min}}</label>
+                    <div class="row">
+                        <p-inputNumber [(ngModel)]="product.stock_min" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1"
+                            decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [min]="0" [max]="1000"></p-inputNumber>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_stock_max}}</label>
+                    <div class="row">
+                        <p-inputNumber [(ngModel)]="product.stock_max" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="1"
+                            decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" [min]="0" [max]="1000"></p-inputNumber>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_price}}</label>
+                    <div class="row">
+                        <p-inputNumber [(ngModel)]="product.price" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="50.00"
+                            decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" 
+                            locale="en-US" mode="currency" currency="USD"></p-inputNumber>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_sales_price}}</label>
+                    <div class="row">
+                        <p-inputNumber [(ngModel)]="product.sale_price" [showButtons]="true" buttonLayout="horizontal" inputId="horizontal" spinnerMode="horizontal" [step]="50.00"
+                            decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" 
+                            locale="en-US" mode="currency" currency="USD"></p-inputNumber>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">

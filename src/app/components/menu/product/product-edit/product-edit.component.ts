@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { Enumerados } from 'src/app/config/Enumerados';
 import { ObjectModelInitializer } from 'src/app/config/ObjectModelInitializer';
 import { TextProperties } from 'src/app/config/TextProperties';
 import { Util } from 'src/app/config/Util';
@@ -16,33 +17,40 @@ import { environment } from 'src/environments/environment';
 export class ProductEditComponent implements OnInit {
   // Data
   @Input() product: ProductModel | undefined;
+  @Input() phase: string | undefined;
   @Output() saveEvent = new EventEmitter<any>();
+  productTypes: any = [];
+  unitTypes: any = [];
+  categories: any = [];
 
   // Common
   msg: any;
-  phase: string = environment.phaseCreate;
   phaseCreate: string = environment.phaseCreate;
-  phaseEdit: string = environment.phaseEdit;
 
-  constructor(private textProperties: TextProperties, private util: Util, private rest: RestService, private omi: ObjectModelInitializer, private messageService: MessageService) {
+  constructor(private textProperties: TextProperties, private enums: Enumerados, private util: Util, private rest: RestService, private omi: ObjectModelInitializer, private messageService: MessageService) {
     this.msg = textProperties.getProperties(environment.idiomaEs);
   }
 
   ngOnInit(): void {
+    this.inicializar();
   }
 
   inicializar() {
-    this.messageService.clear();
-    let phaseSge = localStorage.getItem("phase") ? localStorage.getItem("phase") : this.phaseCreate;
-    if (phaseSge) {
-      this.phase = phaseSge;
-    }
+    this.productTypes = this.enums.getEnumerados().tipoProducto.valores;
+    this.unitTypes = this.enums.getEnumerados().unidad.valores;
+    this.findCategories();
   }
 
   save() {
     try {
-      console.log(environment.urlProducts);
-      console.log(this.product);
+      if (this.product) {
+        let productType: any = this.product.type;
+        this.product.type = productType.value;
+        let unitType: any = this.product.unit;
+        this.product.unit = unitType.value;
+        let category: any = this.product.category;
+        this.product.category = category.value;
+      }
       this.rest.postREST(environment.urlProducts, this.product).subscribe({
         next: (res: any) => {
           console.log(res);
@@ -59,4 +67,26 @@ export class ProductEditComponent implements OnInit {
       this.messageService.add(this.util.showErrorMessage(error, this.msg.lbl_summary_danger, environment.severity[3]))
     }
   }
+
+  findCategories() {
+    try {
+      this.rest.getREST(environment.urlProductCategories).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          this.categories = [];
+          let enumEmpty = { value: "-1", label: this.msg.lbl_enum_generico_valor_vacio };
+          this.categories.push(enumEmpty);
+          res.result.forEach((category: { name: any; }) => {
+            let enumCategory = { value: category, label: category.name };
+            this.categories.push(enumCategory);
+          });
+        },
+        error: (e) => this.util.showErrorMessage(e, this.msg.lbl_summary_warning, environment.severity[2])
+      });
+    } catch (error) {
+      console.log(error);
+      this.util.showErrorMessage(error, this.msg.lbl_summary_danger, environment.severity[3])
+    }
+  }
+
 }

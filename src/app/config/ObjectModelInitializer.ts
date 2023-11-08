@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ProductModel } from '../model/product/product-model';
 
 @Injectable()
 export class ObjectModelInitializer {
@@ -7,7 +8,6 @@ export class ObjectModelInitializer {
   }
 
   // Shared
-
   getLocaleESForCalendar() {
     return {
       firstDayOfWeek: 1,
@@ -77,21 +77,7 @@ export class ObjectModelInitializer {
     }
   };
 
-  initializerMenuModel() {
-    return {
-      index: 0,
-      title: "",
-      subtitle: "",
-      link: "",
-      icon: "",
-      active: false,
-      disable: false,
-      severity: ""
-    }
-  };
-
   // Identity
-
   getDataServiceSesion() {
     return {
       // data
@@ -120,18 +106,44 @@ export class ObjectModelInitializer {
     }
   };
 
-  // Bill Model
+  // Menu Model
+  initializerMenuModel() {
+    return {
+      index: 0,
+      title: "",
+      subtitle: "",
+      link: "",
+      icon: "",
+      active: false,
+      disable: false,
+      severity: ""
+    }
+  };
 
+  // Bill Model
   initializerConceptBillModel() {
     return {
       code: "",
       concept: "",
       description: "",
-      measurement_unit: "",
-      product_type: "",
+      measurement_unit: "BULTO",
+      product_type: "ARTICULO",
       quantity: 0,
       amount: 0,
       total_amount: 0
+    }
+  };
+
+  initializerConceptBillModelByProduct(product: ProductModel, i: number) {
+    return {
+      code: "C000" + i,
+      concept: product.name,
+      description: product.description,
+      measurement_unit: product.unit,
+      product_type: product.type,
+      quantity: 1,
+      amount: product.sale_price,
+      total_amount: product.sale_price
     }
   };
 
@@ -139,7 +151,7 @@ export class ObjectModelInitializer {
     return {
       business_name: "",
       document_number: "",
-      document_type: ""
+      document_type: "CEDULA"
     }
   };
 
@@ -147,7 +159,7 @@ export class ObjectModelInitializer {
     return {
       name: "",
       document_number: "",
-      document_type: ""
+      document_type: "CEDULA"
     }
   };
 
@@ -155,7 +167,31 @@ export class ObjectModelInitializer {
     return {
       name: "",
       document_number: "",
-      document_type: ""
+      document_type: "CEDULA"
+    }
+  };
+
+  initializerCompanyBillModelByParams(name: string, documentNumber: string, documentType: string) {
+    return {
+      business_name: name,
+      document_number: documentNumber,
+      document_type: documentType
+    }
+  };
+
+  initializerClientBillModelByParams(name: string, documentNumber: string, documentType: string) {
+    return {
+      name: name,
+      document_number: documentNumber,
+      document_type: documentType
+    }
+  };
+
+  initializerProviderBillModelByParams(name: string, documentNumber: string, documentType: string) {
+    return {
+      name: name,
+      document_number: documentNumber,
+      document_type: documentType
     }
   };
 
@@ -170,14 +206,14 @@ export class ObjectModelInitializer {
     return {
       _id: null,
       bill_id: 0,
-      status: "",
+      status: "PAGADA",
       description: "",
       city: "",
       address: "",
       concepts: [],
       taxes: [],
-      bill_type: "",
-      payment_method: "E",
+      bill_type: "VENTA",
+      payment_method: "EFECTIVO",
       bill_date: null,
       expiry_date: null,
       company: this.initializerCompanyBillModel(),
@@ -245,7 +281,7 @@ export class ObjectModelInitializer {
     return {
       _id: null,
       name: "",
-      info: this.initializerContactModel(),
+      info: this.initializerContactClientModel(),
       document_number: "",
       document_type: "CEDULA",
       image: "",
@@ -260,7 +296,7 @@ export class ObjectModelInitializer {
   };
 
   // Contact
-  initializerContactModel() {
+  initializerContactClientModel() {
     return {
       telephone: "",
       email: "",
@@ -276,12 +312,50 @@ export class ObjectModelInitializer {
       code: "",
       name: "",
       description: "",
+      category: this.initializerProductCategoryModel(),
+      stock: 0,
       stock_min: 0,
       stock_max: 0,
-      type: "ARTICLE",
+      unit: "BULTO",
+      type: "ARTICULO",
       sale_price: 0,
       price: 0,
       image: "",
+
+      // Auditoria
+      create_user: "",
+      update_user: "",
+      create_date: null,
+      update_date: null,
+      _class: null
+    }
+  };
+
+  // Employee Model
+  initializerEmployeeModel() {
+    return {
+      _id: null,
+      name: "",
+      document_number: "",
+      document_type: "CEDULA",
+      image: "",
+      hire_date: null,
+
+      // Auditoria
+      create_user: "",
+      update_user: "",
+      create_date: null,
+      update_date: null,
+      _class: null
+    }
+  };
+
+  // Assignment Model
+  initializerAssignmentModel() {
+    return {
+      _id: null,
+      employee: this.initializerEmployeeModel(),
+      clients: [],
 
       // Auditoria
       create_user: "",

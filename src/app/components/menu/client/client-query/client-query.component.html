@@ -30,7 +30,7 @@
         </div>
 
         <p-dialog header="{{title}} - {{msg.lbl_menu_gestion}}" [(visible)]="showPnlEdit" [modal]="true"
-            [style]="{ width: '50vw' }" [draggable]="false" (onHide)="find()" [resizable]="false">
+            [style]="{ width: '80vw' }" [draggable]="false" (onHide)="find()" [resizable]="false">
             <app-client-edit [client]="selectedClient" [phase]="selectedPhase" (saveEvent)="save($event)"></app-client-edit>
         </p-dialog>
     </div>
@@ -38,7 +38,9 @@
 
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <p-table [value]="list" responsiveLayout="stack" [tableStyle]="{'min-width': '80rem'}">
+        <p-table [value]="list" responsiveLayout="stack" [tableStyle]="{'min-width': '80rem'}" 
+            [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10, 25, 50, 100]" [showCurrentPageReport]="true"  
+            currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} elementos">
             <ng-template pTemplate="caption">
                 <div class="flex align-items-center justify-content-between">
                     {{title}}
@@ -48,7 +50,8 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th scope="col" class="text-center">Nombre</th>
-                    <th scope="col" class="text-center">Identificación</th>
+                    <th scope="col" class="text-center w30p">Identificación</th>
+                    <th scope="col" class="text-center w10p"></th>
                     <th scope="col" class="text-center w10p"></th>
                 </tr>
             </ng-template>
@@ -57,12 +60,8 @@
                     <td>{{element.name}}</td>
                     <td>{{util.getEmunName(documentTypes, element.document_type)}} - {{element.document_number}}</td>
                     <td class="text-center"><p-button icon="pi pi-pencil" (click)="toEdit(element)"></p-button></td>
+                    <td class="text-center"><p-button icon="pi pi-trash" (click)="deleteRow(element._id)"></p-button></td>
                 </tr>
-            </ng-template>
-            <ng-template pTemplate="summary">
-                <div class="flex align-items-center justify-content-between">
-                    Hay un total de {{list ? list.length : 0 }} elementos.
-                </div>
             </ng-template>
         </p-table>
 

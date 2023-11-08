@@ -18,33 +18,27 @@ declare var $: any;
 export class ProductCategoryEditComponent implements OnInit {
   // Data
   @Input() productCategory: ProductCategoryModel | undefined;
+  @Input() phase: string | undefined;
   @Output() saveEvent = new EventEmitter<any>();
 
   // Common
   msg: any;
-  phase: string = environment.phaseCreate;
   phaseCreate: string = environment.phaseCreate;
-  phaseEdit: string = environment.phaseEdit;
 
   constructor(private textProperties: TextProperties, private util: Util, private rest: RestService, private omi: ObjectModelInitializer, private messageService: MessageService) {
     this.msg = textProperties.getProperties(environment.idiomaEs);
   }
 
   ngOnInit(): void {
+    this.inicializar();
   }
 
   inicializar() {
     this.messageService.clear();
-    let phaseSge = localStorage.getItem("phase") ? localStorage.getItem("phase") : this.phaseCreate;
-    if (phaseSge) {
-      this.phase = phaseSge;
-    }
   }
 
   save() {
     try {
-      console.log(environment.urlProductCategories);
-      console.log(this.productCategory);
       this.rest.postREST(environment.urlProductCategories, this.productCategory).subscribe({
         next: (res: any) => {
           console.log(res);

@@ -82,4 +82,21 @@ export class ProviderQueryComponent implements OnInit {
     this.showPnlEdit = false;
   }
 
+  deleteRow(id: string) {
+    this.messageService.clear();
+    try {
+      this.rest.deleteREST(environment.urlProviders, id).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          this.util.showMessage(this.msg.lbl_summary_success, this.msg.lbl_detail_el_registro_eliminado, environment.severity[1]);
+          this.find();
+        },
+        error: (e) => this.util.showErrorMessage(e, this.msg.lbl_summary_warning, environment.severity[2])
+      });
+    } catch (error) {
+      console.log(error);
+      this.util.showErrorMessage(error, this.msg.lbl_summary_danger, environment.severity[3])
+    }
+  }
+
 }

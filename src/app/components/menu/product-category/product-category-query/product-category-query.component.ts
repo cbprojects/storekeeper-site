@@ -20,6 +20,7 @@ export class ProductCategoryQueryComponent implements OnInit {
   showPnlEdit: boolean = false;
   filter: ProductCategoryModel | undefined;
   selectedProductCategory: ProductCategoryModel | undefined;
+  selectedPhase: string | undefined;
 
   // Common
   msg: any;
@@ -29,6 +30,12 @@ export class ProductCategoryQueryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.inicializar();
+  }
+
+  inicializar() {
+    this.selectedPhase = environment.phaseCreate;
+    localStorage.setItem("phase", environment.phaseCreate);
     this.filter = this.omi.initializerProductCategoryModel();
     this.find();
   }
@@ -36,6 +43,16 @@ export class ProductCategoryQueryComponent implements OnInit {
   toCreate() {
     this.messageService.clear();
     this.selectedProductCategory = this.omi.initializerProductCategoryModel();
+    this.selectedPhase = environment.phaseCreate;
+    localStorage.setItem("phase", environment.phaseCreate);
+    this.showPnlEdit = true;
+  }
+
+  toEdit(productCategory: ProductCategoryModel) {
+    this.messageService.clear();
+    this.selectedProductCategory = productCategory;
+    this.selectedPhase = environment.phaseEdit;
+    localStorage.setItem("phase", environment.phaseEdit);
     this.showPnlEdit = true;
   }
 
@@ -58,6 +75,23 @@ export class ProductCategoryQueryComponent implements OnInit {
     this.messageService.add(event);
     this.find();
     this.showPnlEdit = false;
+  }
+
+  deleteRow(id: string) {
+    this.messageService.clear();
+    try {
+      this.rest.deleteREST(environment.urlProductCategories, id).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          this.find();
+          this.util.showMessage(this.msg.lbl_summary_success, this.msg.lbl_detail_el_registro_eliminado, environment.severity[1]);
+        },
+        error: (e) => this.util.showErrorMessage(e, this.msg.lbl_summary_warning, environment.severity[2])
+      });
+    } catch (error) {
+      console.log(error);
+      this.util.showErrorMessage(error, this.msg.lbl_summary_danger, environment.severity[3])
+    }
   }
 
 }

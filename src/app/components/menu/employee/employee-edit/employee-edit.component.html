@@ -1,0 +1,61 @@
+<div *ngIf="employee" class="card">
+    <div class="content">
+        <div class="row">
+            {{employee | json}}
+            <div class="col-xs-12 col-sm-6 col-md-2">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_id}}</label>
+                    <input type="text" class="form-control border-input" disabled placeholder="{{msg.lbl_forms_id}}"
+                        [(ngModel)]="employee._id">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-10">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_name}}</label>
+                    <input type="text" class="form-control border-input" placeholder="{{msg.lbl_forms_name}}"
+                        [(ngModel)]="employee.name">
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <label>{{msg.lbl_forms_hire_date}}</label>
+                <div class="row">
+                    <p-calendar [(ngModel)]="employee.hire_date" dateFormat="dd/mm/yy"
+                        [showIcon]="true" [maxDate]="maxDate"></p-calendar>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_document_type}}</label>
+                    <p-dropdown [options]="documentTypes" [(ngModel)]="employee.document_type"
+                        [filter]="true" filterBy="label" [showClear]="false" optionLabel="label"></p-dropdown>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_document_number}}</label>
+                    <input type="text" class="form-control border-input" placeholder="{{msg.lbl_forms_document_number}}"
+                        [(ngModel)]="employee.document_number">
+                </div>
+            </div>
+        </div>
+
+        <div class="row flex justify-content-center">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-2 text-center">
+                <div class="m-3 pt-1">
+                    <p-button (click)="save()" class="w100"
+                        label="{{phase === phaseCreate ? msg.lbl_btn_crear : msg.lbl_btn_editar}}"
+                        icon="pi pi-save"></p-button>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <p-messages></p-messages>
+            </div>
+        </div>
+    </div>
+</div>

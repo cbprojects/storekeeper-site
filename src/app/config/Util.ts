@@ -607,4 +607,9 @@ export class Util {
   toggleMenu() {
     $('#toggleMenuMobile').click();
   }
+
+  getNewDate() {
+    return new Date();
+  }
+  
 }

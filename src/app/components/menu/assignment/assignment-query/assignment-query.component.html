@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="content">
+        <div class="row flex justify-content-center">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_name}}</label>
+                    <input type="text" class="form-control border-input" placeholder="{{msg.lbl_forms_name}}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row flex justify-content-center">
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 text-center">
+        <div class="m-3 pt-1">
+            <p-button id="btnQuery" (click)="findEmployees()" class="w100" label="{{msg.lbl_btn_consultar}}"
+                icon="pi pi-search"></p-button>
+        </div>
+
+        <p-dialog header="{{title}} - {{msg.lbl_menu_gestion}}" [(visible)]="showPnlEdit" [modal]="true"
+            [style]="{ width: '80vw' }" [draggable]="false" (onHide)="findEmployees()" [resizable]="false">
+            <app-assignment-edit [assignment]="selectedAssignment" [phase]="selectedPhase" (saveEvent)="save($event)"></app-assignment-edit>
+        </p-dialog>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <p-table [value]="list" responsiveLayout="stack" [tableStyle]="{'min-width': '80rem'}" 
+            [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10, 25, 50, 100]" [showCurrentPageReport]="true"  
+            currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} elementos">
+            <ng-template pTemplate="caption">
+                <div class="flex align-items-center justify-content-between">
+                    {{title}}
+                    <p-button icon="pi pi-refresh"></p-button>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th scope="col" class="text-center w50p">Nombre</th>
+                    <th scope="col" class="text-center">Identificación</th>
+                    <th scope="col" class="text-center">Fecha Contratación</th>
+                    <th scope="col" class="text-center w10p"></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-element>
+                <tr>
+                    <td>{{element.name}}</td>
+                    <td>{{util.getEmunName(documentTypes, element.document_type)}} - {{element.document_number}}</td>
+                    <td>{{element.hire_date}}</td>
+                    <td class="text-center"><p-button icon="pi pi-pencil" (click)="toEdit(element)"></p-button></td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <p-messages></p-messages>
+            </div>
+        </div>
+    </div>
+</div>
