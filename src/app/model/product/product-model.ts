@@ -1,4 +1,5 @@
 import { ProductCategoryModel } from "../product-category/product-category-model";
+import { ProviderProductModel } from "./provider-product-model";
 
 export interface ProductModel {
     _id: any;
@@ -6,6 +7,7 @@ export interface ProductModel {
     name: string;
     description: string;
     category: ProductCategoryModel;
+    provider: ProviderProductModel;
     stock: number;
     stock_min: number;
     stock_max: number;

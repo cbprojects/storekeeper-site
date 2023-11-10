@@ -49,10 +49,9 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th scope="col" class="text-center w10p">Código</th>
-                    <th scope="col" class="text-center">Nombre</th>
-                    <th scope="col" class="text-center w10p">Tipo</th>
-                    <th scope="col" class="text-center w10p">Unidad</th>
-                    <th scope="col" class="text-center w10p">Stock</th>
+                    <th scope="col" class="text-center w30p">Concepto</th>
+                    <th scope="col" class="text-center">Proveedor</th>
+                    <th scope="col" class="text-center">Categoría</th>
                     <th scope="col" class="text-center w10p"></th>
                     <th scope="col" class="text-center w10p"></th>
                 </tr>
@@ -60,10 +59,15 @@
             <ng-template pTemplate="body" let-element>
                 <tr>
                     <td class="text-center">{{element.code}}</td>
-                    <td>{{element.name}}</td>
-                    <td>{{element.type}}</td>
-                    <td>{{element.unit}}</td>
-                    <td>{{element.stock}}</td>
+                    <td>{{element.name}} (Stock: {{element.stock}}). {{util.getEnumName(productTypes, element.type)}}, {{util.getEnumName(unitTypes, element.unit)}}</td>
+                    <td class="text-center">{{element.provider.name}}</td>
+                    <td class="text-center">
+                        <p-tag [style]="{ 'background': element.category.color, 'height': '3rem', 'width': 'auto' }">
+                            <div class="flex align-items-center gap-2">
+                                <i class="pi pi-palette"></i>{{element.category.name}}
+                            </div>
+                        </p-tag>
+                    </td>
                     <td class="text-center"><p-button icon="pi pi-pencil" (click)="toEdit(element)"></p-button></td>
                     <td class="text-center"><p-button icon="pi pi-trash" (click)="deleteRow(element._id)"></p-button></td>
                 </tr>

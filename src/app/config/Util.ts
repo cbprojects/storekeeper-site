@@ -212,7 +212,7 @@ export class Util {
     return lis;
   }
 
-  getEmunName(enumerado: any[], id: number) {
+  getEnumName(enumerado: any[], id: number) {
     let name = '';
     enumerado.forEach(function (obj) {
       if (obj.value === id) {

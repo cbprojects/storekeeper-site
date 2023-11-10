@@ -6,3 +6,39 @@
 .bill-bg-header {
     background: #30b3ed6b;
 }
+
+.icon-category {
+    font-size: 2.5rem !important;
+}
+
+// Ribbons
+.ribbon {
+    position: absolute;
+    right: var(--right, 10px);
+    top: var(--top, -3px);
+    filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, 0.5));
+    border-radius: 5px;
+}
+.ribbon > .content {
+    color: white;
+    font-size: 1.25rem;
+    text-align: center;
+    font-weight: bold;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 100%, 0 100%);
+    transition: clip-path 1s, padding 1s, background 1s;
+}
+.ribbon.slant-up > .content {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), 50% calc(100% - 6px), 0 100%);
+}
+.ribbon.slant-down > .content {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 6px), 0 calc(100% - 12px));
+}
+.ribbon.down > .content {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 8px), 50% 100%, 0 calc(100% - 8px));
+}
+.ribbon.up > .content {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% calc(100% - 8px), 0 100%);
+}
+.ribbon.check > .content {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), 40% 100%, 0 calc(100% - 12px));
+}

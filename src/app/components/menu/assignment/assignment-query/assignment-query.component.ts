@@ -45,7 +45,6 @@ export class AssignmentQueryComponent implements OnInit {
   }
 
   toEdit(employee: EmployeeModel) {
-    debugger;
     this.messageService.clear();
     try {
       this.rest.getREST(`${environment.urlAssignments}employees/${employee._id}`).subscribe({

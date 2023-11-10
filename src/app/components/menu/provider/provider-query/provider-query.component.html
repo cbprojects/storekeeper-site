@@ -57,7 +57,7 @@
             <ng-template pTemplate="body" let-element>
                 <tr>
                     <td>{{element.name}}</td>
-                    <td>{{util.getEmunName(documentTypes, element.document_type)}} - {{element.document_number}}</td>
+                    <td>{{util.getEnumName(documentTypes, element.document_type)}} - {{element.document_number}}</td>
                     <td class="text-center"><p-button icon="pi pi-pencil" (click)="toEdit(element)"></p-button></td>
                     <td class="text-center"><p-button icon="pi pi-trash" (click)="deleteRow(element._id)"></p-button></td>
                 </tr>

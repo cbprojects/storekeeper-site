@@ -21,7 +21,7 @@ export class ProductQueryComponent implements OnInit {
   list: ProductModel[] = [];
   showPnlEdit: boolean = false;
   filter: ProductModel | undefined;
-  selectedProduct: ProductModel | undefined;
+  selectedProduct: any | undefined;
   selectedPhase: string | undefined;
   productTypes: any = [];
   unitTypes: any = [];
@@ -30,7 +30,7 @@ export class ProductQueryComponent implements OnInit {
   // Common
   msg: any;
 
-  constructor(private textProperties: TextProperties, private enums: Enumerados, private rest: RestService, private util: Util, private omi: ObjectModelInitializer, private messageService: MessageService) {
+  constructor(private textProperties: TextProperties, private enums: Enumerados, private rest: RestService, public util: Util, private omi: ObjectModelInitializer, private messageService: MessageService) {
     this.msg = textProperties.getProperties(environment.idiomaEs);
   }
 
@@ -62,9 +62,8 @@ export class ProductQueryComponent implements OnInit {
     this.selectedProduct.type = this.productTypes.find((el: EnumItemModel) => el.value === product.type);
     this.selectedProduct.unit = this.unitTypes.find((el: EnumItemModel) => el.value === product.unit);
     this.selectedProduct.category = this.categories.find((el: EnumItemModel) => el.value._id === product.category._id);
-    this.selectedPhase = environment.phaseEdit;
-    localStorage.setItem("phase", environment.phaseEdit);
-    this.showPnlEdit = true;
+    let providerDocument = product.provider.document_number;
+    this.findProviderByDocumentNumber(providerDocument);
   }
 
   find() {
@@ -94,6 +93,26 @@ export class ProductQueryComponent implements OnInit {
             let enumCategory = { value: category, label: category.name };
             this.categories.push(enumCategory);
           });
+        },
+        error: (e) => this.util.showErrorMessage(e, this.msg.lbl_summary_warning, environment.severity[2])
+      });
+    } catch (error) {
+      console.log(error);
+      this.util.showErrorMessage(error, this.msg.lbl_summary_danger, environment.severity[3])
+    }
+  }
+
+  findProviderByDocumentNumber(documentNumber: string) {
+    this.messageService.clear();
+    try {
+      this.rest.getREST(`${environment.urlProviders}documents/${documentNumber}`).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          this.selectedProduct.provider = { label: res.name, value: res };
+
+          this.selectedPhase = environment.phaseEdit;
+          localStorage.setItem("phase", environment.phaseEdit);
+          this.showPnlEdit = true;
         },
         error: (e) => this.util.showErrorMessage(e, this.msg.lbl_summary_warning, environment.severity[2])
       });

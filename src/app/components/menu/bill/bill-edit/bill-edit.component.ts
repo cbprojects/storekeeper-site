@@ -25,10 +25,10 @@ export class BillEditComponent implements OnInit {
   paymentMethods: EnumItemModel[] = [];
   paymentOptions: any[] = [];
   selectedPayment: any;
+  productTypes: EnumItemModel[] = [];
   billTypes: EnumItemModel[] = [];
   billStatuses: EnumItemModel[] = [];
   companies: EnumItemModel[] = [];
-  providers: EnumItemModel[] = [];
   clients: EnumItemModel[] = [];
   products: ProductModel[] = [];
   targetProducts: ProductModel[] = [];
@@ -52,6 +52,7 @@ export class BillEditComponent implements OnInit {
     this.showBilling = false;
     this.targetProducts = [];
     this.paymentMethods = this.enums.getEnumerados().metodoPago.valores;
+    this.productTypes = this.enums.getEnumerados().tipoProducto.valores;
     this.billTypes = this.enums.getEnumerados().tipoFactura.valores;
     this.billStatuses = this.enums.getEnumerados().estadoFactura.valores;
     this.paymentOptions = [];
@@ -59,7 +60,6 @@ export class BillEditComponent implements OnInit {
     this.paymentOptions.push({ icon: 'pi pi-credit-card', name: "Débito", value: "TARJETA_DEBITO" });
     this.paymentOptions.push({ icon: 'pi pi-credit-card', name: "Crédito", value: "TARJETA_CREDITO" });
     this.findCompanies();
-    this.findProviders();
     this.findClients();
     this.findProducts();
   }
@@ -72,8 +72,6 @@ export class BillEditComponent implements OnInit {
         this.bill.payment_method = this.selectedPayment.value;
         let status: any = this.bill.status;
         this.bill.status = status.value;
-        let billProvider: any = this.bill.provider;
-        this.bill.provider = this.omi.initializerProviderBillModelByParams(billProvider.value.name, billProvider.value.document_number, billProvider.value.document_type);
         let billClient: any = this.bill.client;
         this.bill.client = this.omi.initializerClientBillModelByParams(billClient.value.name, billClient.value.document_number, billClient.value.document_type);
         this.bill.company = this.omi.initializerCompanyBillModel();
@@ -108,27 +106,6 @@ export class BillEditComponent implements OnInit {
           res.result.forEach((company: { business_name: any; }) => {
             let enumcompany = { value: company, label: company.business_name };
             this.companies.push(enumcompany);
-          });
-        },
-        error: (e) => this.util.showErrorMessage(e, this.msg.lbl_summary_warning, environment.severity[2])
-      });
-    } catch (error) {
-      console.log(error);
-      this.util.showErrorMessage(error, this.msg.lbl_summary_danger, environment.severity[3])
-    }
-  }
-
-  findProviders() {
-    try {
-      this.rest.getREST(environment.urlProviders).subscribe({
-        next: (res: any) => {
-          console.log(res);
-          this.providers = [];
-          let enumEmpty = { value: "-1", label: this.msg.lbl_enum_generico_valor_vacio };
-          this.providers.push(enumEmpty);
-          res.result.forEach((provider: { name: any; }) => {
-            let enumProvider = { value: provider, label: provider.name };
-            this.providers.push(enumProvider);
           });
         },
         error: (e) => this.util.showErrorMessage(e, this.msg.lbl_summary_warning, environment.severity[2])

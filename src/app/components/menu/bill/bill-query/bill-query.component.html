@@ -49,8 +49,7 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th scope="col" class="text-center w10p"># Factura</th>
-                    <th scope="col" class="text-center">Cliente</th>
-                    <th scope="col" class="text-center">Proveedor</th>
+                    <th scope="col" class="text-center w30p">Cliente</th>
                     <th scope="col" class="text-center">Tipo</th>
                     <th scope="col" class="text-center">Pago</th>
                     <th scope="col" class="text-center">Fecha</th>
@@ -63,7 +62,6 @@
                 <tr>
                     <td class="text-center">{{element.bill_id}}</td>
                     <td>{{element.client.name}}</td>
-                    <td>{{element.provider.name}}</td>
                     <td class="text-center">{{element.bill_type}}</td>
                     <td class="text-center">{{element.payment_method}}</td>
                     <td class="text-center">{{element.bill_date}}</td>

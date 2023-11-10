@@ -21,7 +21,7 @@ export class BillQueryComponent implements OnInit {
   list: BillModel[] = [];
   showPnlEdit: boolean = false;
   filter: BillModel | undefined;
-  selectedBill: BillModel | undefined;
+  selectedBill: any | undefined;
   selectedPhase: string | undefined;
   billTypes: any = [];
   paymentMethods: any = [];
@@ -44,11 +44,6 @@ export class BillQueryComponent implements OnInit {
     this.billTypes = this.enums.getEnumerados().tipoFactura.valores;
     this.paymentMethods = this.enums.getEnumerados().metodoPago.valores;
     this.billStatuses = this.enums.getEnumerados().estadoFactura.valores;
-    // TODO: Falta cargar estos datos
-    // let billProvider: any = this.bill.provider;
-    // let billClient: any = this.bill.client;
-    // this.bill.company = this.omi.initializerCompanyBillModel();
-
     this.filter = this.omi.initializerBillModel();
     this.find();
   }
@@ -62,14 +57,32 @@ export class BillQueryComponent implements OnInit {
   }
 
   toEdit(bill: BillModel) {
-    this.messageService.clear();
     this.selectedBill = bill;
     this.selectedBill.bill_type = this.billTypes.find((el: EnumItemModel) => el.value === bill.bill_type);
     this.selectedBill.payment_method = this.paymentMethods.find((el: EnumItemModel) => el.value === bill.payment_method);
     this.selectedBill.status = this.billStatuses.find((el: EnumItemModel) => el.value === bill.status);
-    this.selectedPhase = environment.phaseEdit;
-    localStorage.setItem("phase", environment.phaseEdit);
-    this.showPnlEdit = true;
+    let clientDocument = bill.client.document_number;
+    this.findClientByDocumentNumber(clientDocument);
+  }
+
+  findClientByDocumentNumber(clientDocument: string) {
+    this.messageService.clear();
+    try {
+      this.rest.getREST(`${environment.urlClients}documents/${clientDocument}`).subscribe({
+        next: (res: any) => {
+          console.log(res);
+          this.selectedBill.client = { label: res.name, value: res };
+
+          this.selectedPhase = environment.phaseEdit;
+          localStorage.setItem("phase", environment.phaseEdit);
+          this.showPnlEdit = true;
+        },
+        error: (e) => this.util.showErrorMessage(e, this.msg.lbl_summary_warning, environment.severity[2])
+      });
+    } catch (error) {
+      console.log(error);
+      this.util.showErrorMessage(error, this.msg.lbl_summary_danger, environment.severity[3])
+    }
   }
 
   find() {

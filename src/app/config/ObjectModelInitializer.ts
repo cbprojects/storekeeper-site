@@ -48,6 +48,13 @@ export class ObjectModelInitializer {
     }
   }
 
+  getDataEnumeradoByValue(label: string, value: any) {
+    return {
+      label: label,
+      value: value
+    }
+  }
+
   getDataMessage() {
     return {
       // info, success, warning, danger
@@ -128,6 +135,7 @@ export class ObjectModelInitializer {
       description: "",
       measurement_unit: "BULTO",
       product_type: "ARTICULO",
+      provider: this.initializerProviderProductModel(),
       quantity: 0,
       amount: 0,
       total_amount: 0
@@ -141,6 +149,7 @@ export class ObjectModelInitializer {
       description: product.description,
       measurement_unit: product.unit,
       product_type: product.type,
+      provider: product.provider,
       quantity: 1,
       amount: product.sale_price,
       total_amount: product.sale_price
@@ -163,7 +172,7 @@ export class ObjectModelInitializer {
     }
   };
 
-  initializerProviderBillModel() {
+  initializerProviderProductModel() {
     return {
       name: "",
       document_number: "",
@@ -187,7 +196,7 @@ export class ObjectModelInitializer {
     }
   };
 
-  initializerProviderBillModelByParams(name: string, documentNumber: string, documentType: string) {
+  initializerProviderProductModelByParams(name: string, documentNumber: string, documentType: string) {
     return {
       name: name,
       document_number: documentNumber,
@@ -217,7 +226,6 @@ export class ObjectModelInitializer {
       bill_date: null,
       expiry_date: null,
       company: this.initializerCompanyBillModel(),
-      provider: this.initializerProviderBillModel(),
       client: this.initializerClientBillModel(),
 
       // Auditoria
@@ -313,6 +321,7 @@ export class ObjectModelInitializer {
       name: "",
       description: "",
       category: this.initializerProductCategoryModel(),
+      provider: this.initializerProviderProductModel(),
       stock: 0,
       stock_min: 0,
       stock_max: 0,

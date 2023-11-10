@@ -1,7 +1,6 @@
 import { ClientBillModel } from "./client-bill-model";
 import { CompanyBillModel } from "./company-bill-model";
 import { ConceptModel } from "./concept-model";
-import { ProviderBillModel } from "./provider-bill-model";
 import { TaxModel } from "./tax-model";
 
 export interface BillModel {
@@ -18,7 +17,6 @@ export interface BillModel {
     bill_date: any;
     expiry_date: any;
     company: CompanyBillModel;
-    provider: ProviderBillModel;
     client: ClientBillModel;
 
     // Auditoria

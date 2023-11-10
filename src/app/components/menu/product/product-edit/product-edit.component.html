@@ -80,6 +80,13 @@
         </div>
 
         <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-4">
+                <div class="form-group">
+                    <label>{{msg.lbl_forms_provider}}</label>
+                    <p-dropdown [options]="providers" [(ngModel)]="product.provider"
+                        [filter]="true" filterBy="label" [showClear]="false" optionLabel="label"></p-dropdown>
+                </div>
+            </div>
             <div class="col-xs-12 col-sm-6 col-md-4">
                 <div class="form-group">
                     <label>{{msg.lbl_forms_price}}</label>

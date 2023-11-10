@@ -1,3 +1,4 @@
+import { ProviderProductModel } from "../product/provider-product-model";
 
 export interface ConceptModel {
     code: string;
@@ -5,6 +6,7 @@ export interface ConceptModel {
     description: string;
     measurement_unit: string;
     product_type: string;
+    provider: ProviderProductModel;
     quantity: number;
     amount: number;
     total_amount: number;
