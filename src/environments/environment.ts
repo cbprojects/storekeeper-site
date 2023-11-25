@@ -1,4 +1,5 @@
-export const HOST = 'http://localhost:8080';
+export const HOST = 'https://cbaeneprojects.com:8482/storekeeper-server';
+// export const HOST = 'http://localhost:8080';
 export const SYSTEM = 'http://localhost:4200';
 
 export const environment = {
