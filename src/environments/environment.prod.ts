@@ -1,4 +1,4 @@
-export const HOST = 'https://cbaeneprojects.com:8482/storekeeper-server';
+export const HOST = 'https://cbaeneprojects.com:8402/storekeeper-server';
 export const SYSTEM = 'https://www.storekeeper.cbaeneprojects.com';
 
 export const environment = {
